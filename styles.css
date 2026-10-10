@@ -83,34 +83,34 @@ body {
   .glass-dark { background: rgba(30, 30, 30, 0.9); }
 }
 
-/* ---------- Tło hero: soczewka + orbita ---------- */
+/* ---------- Tło hero: tarcza 360° ---------- */
 .hero-art {
   position: absolute;
   inset: 0;
   pointer-events: none;
   overflow: hidden;
 }
-.lens {
+.dial {
   position: absolute;
-  width: min(86vw, 600px);
+  width: min(130vw, 820px);
   aspect-ratio: 1;
-  right: -22vw;
-  top: 14svh;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle at 36% 32%, #5a5a5a 0 4%, transparent 14%),
-    radial-gradient(circle at 50% 50%, #0a0a0a 0 34%, #1c1c1c 35% 52%, #050505 53% 66%, #2a2a2a 67% 69%, #0d0d0d 70%);
-  animation: drift 18s ease-in-out infinite alternate;
+  right: -52vw;
+  top: 6svh;
+  color: #0a0a0a;
+  overflow: visible;
 }
-.orbit {
-  position: absolute;
-  width: min(120vw, 900px);
-  aspect-ratio: 1;
-  right: -38vw;
-  top: -6svh;
-  border-radius: 50%;
-  border: 1px solid rgba(0, 0, 0, 0.14);
-  animation: spin 60s linear infinite;
+.dial .spin-slow,
+.dial .spin-rev {
+  transform-box: view-box;
+  transform-origin: 50% 50%;
+}
+.dial .spin-slow { animation: spin 140s linear infinite; }
+.dial .spin-rev { animation: spin 90s linear infinite reverse; }
+.dial text {
+  font: 500 15px "Inter", system-ui, sans-serif;
+  letter-spacing: 0.08em;
+  fill: currentColor;
+  opacity: 0.55;
 }
 .dot {
   position: absolute;
@@ -123,8 +123,7 @@ body {
   animation: drift 14s ease-in-out infinite alternate-reverse;
 }
 @media (min-width: 768px) {
-  .lens { right: 3vw; top: auto; bottom: 6svh; width: min(52vw, 600px); }
-  .orbit { right: -12vw; }
+  .dial { right: -6vw; top: 50%; transform: translateY(-46%); width: min(62vw, 820px); }
   .dot { left: 26vw; bottom: 3svh; width: min(14vw, 180px); }
 }
 
@@ -183,5 +182,5 @@ body {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
-  .lens, .orbit, .dot { animation: none; }
+  .dot, .dial .spin-slow, .dial .spin-rev { animation: none; }
 }

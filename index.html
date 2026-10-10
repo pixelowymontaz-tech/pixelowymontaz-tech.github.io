@@ -48,8 +48,24 @@
     <!-- HERO -->
     <section class="relative flex min-h-[92svh] items-end overflow-hidden">
       <div class="hero-art" aria-hidden="true">
-        <div class="orbit"></div>
-        <div class="lens"></div>
+        <svg class="dial" viewBox="0 0 1000 1000" fill="none" stroke="currentColor" aria-hidden="true">
+          <circle cx="500" cy="500" r="492" stroke-width="1.5" stroke-opacity=".12" />
+          <g class="spin-slow">
+            <circle cx="500" cy="500" r="440" stroke-width="16" pathLength="360" stroke-dasharray="0.18 1.82" stroke-opacity=".5" />
+            <circle cx="500" cy="500" r="432" stroke-width="32" pathLength="360" stroke-dasharray="0.45 29.55" />
+            <text x="500" y="138" text-anchor="middle">0°</text>
+            <text x="866" y="505" text-anchor="middle">90°</text>
+            <text x="500" y="874" text-anchor="middle">180°</text>
+            <text x="134" y="505" text-anchor="middle">270°</text>
+          </g>
+          <circle cx="500" cy="500" r="400" stroke-width="1" stroke-opacity=".15" />
+          <g class="spin-rev">
+            <circle cx="500" cy="500" r="300" stroke-width="1.5" stroke-dasharray="3 12" stroke-opacity=".4" />
+          </g>
+          <circle cx="500" cy="500" r="210" stroke-width="1" stroke-opacity=".12" />
+          <path d="M706.8 536.5L893.9 569.5M293.2 536.5L106.1 569.5" stroke-width="1" stroke-opacity=".35" />
+          <path d="M500 470V530M470 500H530" stroke-width="1.5" stroke-opacity=".6" />
+        </svg>
         <div class="dot"></div>
       </div>
 
