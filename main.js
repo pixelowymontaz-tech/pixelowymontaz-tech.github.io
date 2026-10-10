@@ -257,9 +257,13 @@ const SOCIAL = {
     const spy = new IntersectionObserver(
       (entries) =>
         entries.forEach((e) => {
-          if (!e.isIntersecting) return;
-          navLinks.forEach((a) => a.classList.remove("is-active"));
           const a = byId[e.target.id];
+          if (!e.isIntersecting) {
+            // wyjście z sekcji (np. powrót na samą górę) gasi jej podświetlenie
+            if (a) a.classList.remove("is-active");
+            return;
+          }
+          navLinks.forEach((x) => x.classList.remove("is-active"));
           if (a) a.classList.add("is-active");
         }),
       { rootMargin: "-45% 0px -50% 0px" }
