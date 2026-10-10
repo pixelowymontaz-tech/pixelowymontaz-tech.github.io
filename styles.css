@@ -133,6 +133,12 @@ body {
   to { transform: rotate(360deg); }
 }
 
+/* letter-spacing dodaje odstęp też za ostatnią literą — ten padding go równoważy,
+   żeby wyśrodkowany napis był naprawdę na środku */
+.wordmark-center {
+  padding-left: 0.04em;
+}
+
 /* Logo MOVO — Poppins ExtraBold z rozsuniętymi literami, jak w oryginalnym logo */
 .logo {
   font-family: "Poppins", "Inter", system-ui, sans-serif;

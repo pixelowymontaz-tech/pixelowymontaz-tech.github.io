@@ -69,12 +69,21 @@
     const m = g.measureText("M");
     const asc = m.fontBoundingBoxAscent || fs * 1.05;
     const desc = m.fontBoundingBoxDescent || fs * 0.35;
-    const wr = word.getBoundingClientRect();
-    const x0 = wr.left - hr.left + (parseFloat(cs.paddingLeft) || 0);
-    const top = wr.top - hr.top + (parseFloat(cs.paddingTop) || 0);
+    // pozycja napisu bez transformacji z animacji wejścia (offsetLeft/Top ich nie widzą)
+    let ox = 0, oy = 0;
+    for (let n = word; n && n !== host; n = n.offsetParent) { ox += n.offsetLeft; oy += n.offsetTop; }
+    const padL = parseFloat(cs.paddingLeft) || 0;
+    const padR = parseFloat(cs.paddingRight) || 0;
+    const contentW = word.clientWidth - padL - padR;
+    const chars = Array.from(word.textContent.trim());
+    const lineW = chars.reduce((sum, ch) => sum + g.measureText(ch).width + ls, 0);
+    let x0 = ox + padL;
+    if (cs.textAlign === "center") x0 += (contentW - lineW) / 2;
+    else if (cs.textAlign === "right" || cs.textAlign === "end") x0 += contentW - lineW;
+    const top = oy + (parseFloat(cs.paddingTop) || 0);
     const base = top + (lh - (asc + desc)) / 2 + asc;
     let x = x0;
-    for (const ch of word.textContent.trim()) {
+    for (const ch of chars) {
       g.fillText(ch, x, base);
       x += g.measureText(ch).width + ls;
     }
@@ -90,7 +99,7 @@
   // r·(0.62 + 0.63·r³): środek powiększony ~1.6×, a przy krawędzi soczewka
   // „zagina” obraz spoza siebie — jak prawdziwa szklana kula.
   function buildLens() {
-    size = Math.round(Math.min(Math.max(W * 0.24, 150), 340));
+    size = Math.round(Math.min(Math.max(text.h * 1.7, 120), 340)); // proporcjonalnie do napisu
     R = size / 2;
     D = Math.round(size * Math.min(dpr, 1.5)); // limit, żeby słabsze telefony nie gubiły klatek
     cv.width = D;
@@ -148,8 +157,13 @@
       y: text.y + text.h * (0.5 + 0.55 * Math.sin(t / 2900 + 1.3)),
     };
   }
+  // soczewka zawsze cała na ekranie
+  function clampToHost(p) {
+    const m = R + 8;
+    return { x: Math.min(Math.max(p.x, m), W - m), y: Math.min(Math.max(p.y, m), H - m) };
+  }
   function tick(t) {
-    if (!pointer) target = drift(t);
+    target = clampToHost(pointer || drift(t));
     pos.x += (target.x - pos.x) * 0.075;
     pos.y += (target.y - pos.y) * 0.075;
     render();
@@ -168,8 +182,12 @@
   function setPointer(e) {
     const hr = host.getBoundingClientRect();
     pointer = { x: e.clientX - hr.left, y: e.clientY - hr.top };
-    target = pointer;
-    if (reduced) { pos.x = target.x; pos.y = target.y; render(); }
+    if (reduced && R) {
+      const p = clampToHost(pointer);
+      pos.x = p.x;
+      pos.y = p.y;
+      render();
+    }
   }
   host.addEventListener("pointermove", setPointer, { passive: true });
   host.addEventListener("pointerdown", setPointer, { passive: true });
@@ -178,11 +196,9 @@
   function rebuild() {
     buildSource();
     buildLens();
-    if (!pos.x) {
-      const p = drift(performance.now());
-      pos.x = p.x;
-      pos.y = p.y;
-    }
+    const p = clampToHost(pos.x ? pos : drift(performance.now()));
+    pos.x = p.x;
+    pos.y = p.y;
     render();
   }
 
