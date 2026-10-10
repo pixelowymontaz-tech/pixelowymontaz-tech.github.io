@@ -1,21 +1,15 @@
 [
   {
-    "id": "pcb-v1",
-    "date": "2026-10-08",
-    "title": "Płytka v1 poszła do fabryki",
-    "text": "Layout skończony. 4 warstwy, dwa złącza MIPI CSI pod sensory, ładowanie Li-Ion na pokładzie. Trzy razy przepinałem zasilanie, zanim DRC przestał krzyczeć.\n\nTeraz czekam na paczkę i piszę listę rzeczy do sprawdzenia przy pierwszym uruchomieniu.",
-    "title_en": "Board v1 is off to the fab",
-    "text_en": "Layout done. 4 layers, two MIPI CSI connectors for the sensors, Li-Ion charging on board. I rerouted the power three times before DRC stopped yelling.\n\nNow I'm waiting for the package and writing a checklist for the first power-up.",
-    "tags": ["PCB", "elektronika"]
-  },
-  {
     "id": "sensory",
     "date": "2026-09-21",
     "title": "Sensory i obiektywy",
     "text": "Przejrzałem kilka sensorów pod kątem rozdzielczości, rolling shutter i tego, czy da się do nich w ogóle znaleźć sterowniki. Testuję dwa obiektywy rybie oko ~200°, żeby mieć zakładkę na sklejanie obrazu.",
     "title_en": "Sensors and lenses",
     "text_en": "I went through a few sensors looking at resolution, rolling shutter and whether you can even find drivers for them. Testing two ~200° fisheye lenses so there's overlap for stitching.",
-    "tags": ["hardware", "optyka"]
+    "tags": [
+      "hardware",
+      "optyka"
+    ]
   },
   {
     "id": "start",
@@ -24,6 +18,8 @@
     "text": "Buduję własną kamerę 360°. Schemat, PCB, firmware, soft do sklejania obrazu — wszystko sam. Tutaj będę wrzucał, co udało się zrobić, a co spaliłem.",
     "title_en": "Starting out",
     "text_en": "I'm building my own 360° camera. Schematic, PCB, firmware, stitching software — all by myself. I'll post here what worked and what I burned.",
-    "tags": ["start"]
+    "tags": [
+      "start"
+    ]
   }
 ]
