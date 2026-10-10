@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <title>MOVO — kamera 360° od zera · Ignacy</title>
+  <meta name="description" content="MOVO — kamera 360° budowana od zera. Elektronika, PCB, a potem software do sklejania obrazu." />
+  <link rel="canonical" href="https://pixelowymontaz-tech.github.io/" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <meta name="theme-color" content="#f4f4f3" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="MOVO — kamera 360° od zera" />
+  <meta property="og:description" content="Buduję od zera kamerę 360°: elektronika, PCB, a potem software. Tu zapisuję postępy." />
+  <meta property="og:url" content="https://pixelowymontaz-tech.github.io/" />
+  <meta property="og:image" content="https://pixelowymontaz-tech.github.io/assets/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="tw.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="font-sans text-neutral-950 antialiased selection:bg-black selection:text-white">
+  <div data-progress class="fixed inset-x-0 top-0 z-[60] h-[2px] origin-left scale-x-0 bg-black" aria-hidden="true"></div>
+
+  <!-- Pływająca nawigacja ze szkła -->
+  <header class="fixed inset-x-0 top-3 z-50 px-3 sm:top-5">
+    <nav class="glass glass-nav mx-auto flex max-w-xl items-center justify-between rounded-full py-2 pl-5 pr-2 text-sm">
+      <a href="index.html" class="font-display text-base font-extrabold tracking-tight">MOVO</a>
+      <div class="flex items-center gap-1">
+        <a href="#o-mnie" class="hidden rounded-full px-3 py-1.5 text-neutral-600 transition hover:bg-white/60 hover:text-black sm:block">O mnie</a>
+        <a href="#etapy" class="hidden rounded-full px-3 py-1.5 text-neutral-600 transition hover:bg-white/60 hover:text-black sm:block">Etapy</a>
+        <a href="#postepy" class="rounded-full px-3 py-1.5 text-neutral-600 transition hover:bg-white/60 hover:text-black">Postępy</a>
+        <a href="#kontakt" class="rounded-full bg-black px-4 py-1.5 text-white transition hover:bg-neutral-800">Kontakt</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="relative flex min-h-[92svh] items-end overflow-hidden">
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit"></div>
+        <div class="lens"></div>
+        <div class="dot"></div>
+      </div>
+
+      <div class="relative mx-auto w-full max-w-6xl px-4 pb-10 pt-28 sm:px-6 md:pb-16 lg:px-8">
+        <h1 class="wordmark reveal font-display font-extrabold">MOVO</h1>
+
+        <div class="reveal glass mt-8 max-w-md rounded-[28px] p-6 sm:p-7" style="transition-delay:120ms">
+          <p class="text-lg leading-relaxed text-neutral-800">
+            Kamera 360°, którą buduję sam, od zera. Teraz elektronika i PCB, potem software.
+          </p>
+          <p class="mt-5 flex items-start gap-2 border-t border-black/10 pt-4 text-sm text-neutral-600">
+            <span class="mt-1.5 inline-block h-2 w-2 shrink-0 animate-pulse rounded-full bg-black"></span>
+            <span>Ostatnio: <span data-latest class="font-medium text-black">…</span></span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- O MNIE -->
+    <section id="o-mnie" class="bg-white">
+      <div class="mx-auto grid max-w-6xl gap-10 px-4 py-24 sm:px-6 md:grid-cols-[1fr_1.2fr] md:gap-16 md:py-36 lg:px-8">
+        <!-- Monogram zamiast zdjęcia — celowo bez twarzy -->
+        <div class="reveal">
+          <div class="relative aspect-[4/5] w-full max-w-sm overflow-hidden rounded-[28px] bg-[#f4f4f3]" aria-hidden="true">
+            <div class="absolute -right-16 -top-10 aspect-square w-[85%] rounded-full bg-black"></div>
+            <div class="absolute -bottom-20 -left-16 aspect-square w-[75%] rounded-full border border-black/15"></div>
+            <div class="absolute bottom-10 left-10 aspect-square w-[22%] rounded-full bg-black"></div>
+            <div class="glass absolute inset-x-6 bottom-6 top-1/3 flex items-end justify-between rounded-[22px] p-6">
+              <span class="font-display text-[7rem] font-extrabold leading-[0.75] tracking-tighter">I</span>
+              <span class="text-right text-sm leading-snug text-neutral-600">Ignacy<br />MOVO</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="md:pt-8">
+          <h2 class="reveal font-display text-4xl font-bold tracking-tight sm:text-5xl">Cześć, jestem Ignacy.</h2>
+          <p class="reveal mt-6 text-xl leading-relaxed text-neutral-800">
+            Mam 13 lat i buduję od zera kamerę 360°.
+          </p>
+          <p class="reveal mt-5 leading-relaxed text-neutral-600">
+            Sam projektuję elektronikę i płytkę PCB. Docelowo napiszę też oprogramowanie, które skleja obraz z dwóch obiektywów w jedną panoramę.
+            Uczę się wszystkiego w trakcie, więc sporo rzeczy nie wychodzi za pierwszym razem.
+          </p>
+          <p class="reveal mt-5 leading-relaxed text-neutral-600">
+            Tutaj zapisuję, co zrobiłem, co nie zadziałało i co dalej.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ETAPY
+         Statusy: "zrobione" (pełna kropka), "teraz" (pulsuje), "później" (pusta).
+         Żeby zmienić status, podmień klasy kropki i podpis — przykłady są niżej. -->
+    <section id="etapy">
+      <div class="mx-auto max-w-6xl px-4 py-24 sm:px-6 md:py-36 lg:px-8">
+        <h2 class="reveal font-display text-4xl font-bold tracking-tight sm:text-5xl">Gdzie jestem</h2>
+        <p class="reveal mt-5 max-w-lg text-neutral-600">Etapy budowy, mniej więcej po kolei. Kropka pokazuje, co już jest za mną.</p>
+
+        <ol class="mt-14 grid md:grid-cols-5">
+          <li class="reveal relative border-l border-black pb-10 pl-8 md:border-l-0 md:border-t md:pb-0 md:pl-0 md:pr-6 md:pt-8">
+            <span class="absolute -left-[7px] top-0 h-3.5 w-3.5 rounded-full bg-black md:-top-[7px] md:left-0"></span>
+            <p class="text-xs font-medium uppercase tracking-wider text-neutral-500">zrobione</p>
+            <h3 class="mt-2 font-display text-xl font-semibold tracking-tight">Części i schemat</h3>
+            <p class="mt-2 text-sm leading-relaxed text-neutral-600">Sensory, obiektywy, zasilanie. Co z czym się łączy.</p>
+          </li>
+          <li class="reveal relative border-l border-black/15 pb-10 pl-8 md:border-l-0 md:border-t md:pb-0 md:pl-0 md:pr-6 md:pt-8" style="transition-delay:80ms">
+            <span class="absolute -left-[7px] top-0 grid h-3.5 w-3.5 place-items-center md:-top-[7px] md:left-0">
+              <span class="absolute h-full w-full animate-ping rounded-full bg-black/30"></span>
+              <span class="relative h-3.5 w-3.5 rounded-full border-[3px] border-black bg-white"></span>
+            </span>
+            <p class="text-xs font-medium uppercase tracking-wider text-black">teraz</p>
+            <h3 class="mt-2 font-display text-xl font-semibold tracking-tight">Płytka PCB</h3>
+            <p class="mt-2 text-sm leading-relaxed text-neutral-600">Layout, zamówienie, lutowanie pierwszej wersji.</p>
+          </li>
+          <li class="reveal relative border-l border-black/15 pb-10 pl-8 md:border-l-0 md:border-t md:pb-0 md:pl-0 md:pr-6 md:pt-8" style="transition-delay:160ms">
+            <span class="absolute -left-[7px] top-0 h-3.5 w-3.5 rounded-full border border-black/30 bg-[#f4f4f3] md:-top-[7px] md:left-0"></span>
+            <p class="text-xs font-medium uppercase tracking-wider text-neutral-400">później</p>
+            <h3 class="mt-2 font-display text-xl font-semibold tracking-tight text-neutral-500">Uruchomienie</h3>
+            <p class="mt-2 text-sm leading-relaxed text-neutral-500">Pierwszy obraz z sensora. Albo pierwszy dym.</p>
+          </li>
+          <li class="reveal relative border-l border-black/15 pb-10 pl-8 md:border-l-0 md:border-t md:pb-0 md:pl-0 md:pr-6 md:pt-8" style="transition-delay:240ms">
+            <span class="absolute -left-[7px] top-0 h-3.5 w-3.5 rounded-full border border-black/30 bg-[#f4f4f3] md:-top-[7px] md:left-0"></span>
+            <p class="text-xs font-medium uppercase tracking-wider text-neutral-400">później</p>
+            <h3 class="mt-2 font-display text-xl font-semibold tracking-tight text-neutral-500">Obudowa</h3>
+            <p class="mt-2 text-sm leading-relaxed text-neutral-500">Coś, w czym to wszystko się zmieści.</p>
+          </li>
+          <li class="reveal relative pl-8 md:border-t md:border-black/15 md:pl-0 md:pt-8" style="transition-delay:320ms">
+            <span class="absolute -left-[7px] top-0 h-3.5 w-3.5 rounded-full border border-black/30 bg-[#f4f4f3] md:-top-[7px] md:left-0"></span>
+            <p class="text-xs font-medium uppercase tracking-wider text-neutral-400">później</p>
+            <h3 class="mt-2 font-display text-xl font-semibold tracking-tight text-neutral-500">Software</h3>
+            <p class="mt-2 text-sm leading-relaxed text-neutral-500">Sklejanie obrazu z dwóch obiektywów w panoramę.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- POSTĘPY -->
+    <section id="postepy" class="bg-white">
+      <div class="mx-auto max-w-6xl px-4 py-24 sm:px-6 md:py-36 lg:px-8">
+        <div class="flex flex-wrap items-baseline justify-between gap-4">
+          <h2 class="reveal font-display text-4xl font-bold tracking-tight sm:text-5xl">Postępy</h2>
+          <a href="blog.html" class="reveal link-underline text-sm text-neutral-600 hover:text-black">wszystkie wpisy (<span data-post-count>0</span>)</a>
+        </div>
+        <div data-posts data-limit="3" class="mt-10 border-b border-black/10"></div>
+      </div>
+    </section>
+
+    <!-- CEL -->
+    <section class="relative overflow-hidden bg-black text-white">
+      <div class="pointer-events-none absolute -left-24 top-10 aspect-square w-[70vw] max-w-[520px] rounded-full border border-white/10" aria-hidden="true"></div>
+      <div class="pointer-events-none absolute -right-16 bottom-0 aspect-square w-[45vw] max-w-[340px] rounded-full bg-neutral-800" aria-hidden="true"></div>
+
+      <div class="relative mx-auto max-w-6xl px-4 py-24 sm:px-6 md:py-36 lg:px-8">
+        <h2 class="reveal font-display text-4xl font-bold tracking-tight sm:text-5xl">Do czego dążę</h2>
+        <p class="reveal mt-5 max-w-lg text-neutral-400">To nie są obietnice, tylko cele. Zobaczymy, ile z tego przeżyje kontakt z rzeczywistością.</p>
+
+        <!-- ZMIEŃ: swoje cele / parametry -->
+        <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="reveal glass glass-dark rounded-[24px] p-6">
+            <p class="font-display text-4xl font-bold tracking-tight">2×</p>
+            <p class="mt-2 text-sm text-neutral-400">obiektywy rybie oko, ~200° każdy</p>
+          </div>
+          <div class="reveal glass glass-dark rounded-[24px] p-6" style="transition-delay:80ms">
+            <p class="font-display text-4xl font-bold tracking-tight">5.7K</p>
+            <p class="mt-2 text-sm text-neutral-400">docelowa rozdzielczość panoramy</p>
+          </div>
+          <div class="reveal glass glass-dark rounded-[24px] p-6" style="transition-delay:160ms">
+            <p class="font-display text-4xl font-bold tracking-tight">1 PCB</p>
+            <p class="mt-2 text-sm text-neutral-400">cała elektronika na jednej płytce</p>
+          </div>
+          <div class="reveal glass glass-dark rounded-[24px] p-6" style="transition-delay:240ms">
+            <p class="font-display text-4xl font-bold tracking-tight">0 zł</p>
+            <p class="mt-2 text-sm text-neutral-400">na gotowe moduły kamer. Wszystko własne</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- KONTAKT -->
+  <footer id="kontakt" class="bg-black px-4 pb-6 text-white sm:px-6 lg:px-8">
+    <div class="glass glass-dark mx-auto max-w-6xl rounded-[32px] p-7 sm:p-12">
+      <p class="text-neutral-400">Masz pytanie, pomysł albo sensor, którego nie potrzebujesz?</p>
+      <!-- ZMIEŃ: e-mail. Wpisz osobno część przed @ (data-u) i po @ (data-d).
+           Adres składa skrypt, więc boty zbierające maile go nie widzą w kodzie.
+           Użyj osobnego adresu tylko do strony, nie prywatnego. -->
+      <a data-mail data-u="movo.kontakt" data-d="example.com" href="#kontakt" class="mt-3 block break-all font-display text-3xl font-bold tracking-tight transition hover:text-neutral-400 sm:text-5xl">napisz do mnie</a>
+
+      <!-- ZMIEŃ: linki (usuń te, których nie masz) -->
+      <ul class="mt-10 flex flex-wrap gap-2 text-sm">
+        <li><a href="https://github.com/" target="_blank" rel="noopener noreferrer" class="block rounded-full border border-white/15 px-4 py-2 transition hover:bg-white hover:text-black">GitHub</a></li>
+        <li><a href="https://youtube.com/" target="_blank" rel="noopener noreferrer" class="block rounded-full border border-white/15 px-4 py-2 transition hover:bg-white hover:text-black">YouTube</a></li>
+        <li><a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="block rounded-full border border-white/15 px-4 py-2 transition hover:bg-white hover:text-black">Instagram</a></li>
+      </ul>
+    </div>
+    <div class="mx-auto mt-6 flex max-w-6xl justify-between px-2 text-xs text-neutral-500">
+      <span>© <span data-year></span> Ignacy · MOVO</span>
+      <a href="#" class="hover:text-white">do góry</a>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

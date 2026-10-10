@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.github.com; object-src 'none'; base-uri 'none'; form-action 'none'" />
+  <meta name="referrer" content="no-referrer" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Panel — MOVO</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="tw.css" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="min-h-screen font-sans text-neutral-950 antialiased">
+
+  <div class="pointer-events-none fixed -right-40 -top-20 aspect-square w-[90vw] max-w-[700px] rounded-full bg-black" aria-hidden="true"></div>
+  <div class="pointer-events-none fixed -bottom-32 -left-20 aspect-square w-[60vw] max-w-[420px] rounded-full border border-black/15" aria-hidden="true"></div>
+
+  <main class="relative mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-16">
+    <div class="mb-8 flex items-center justify-between">
+      <a href="index.html" class="font-display text-xl font-extrabold tracking-tight">MOVO <span class="font-medium text-neutral-400">/ panel</span></a>
+      <button id="logout" type="button" class="glass hidden rounded-full px-4 py-1.5 text-sm">Wyloguj</button>
+    </div>
+
+    <!-- LOGOWANIE -->
+    <section id="login-view" class="glass rounded-[28px] p-6 sm:p-8">
+      <h1 class="font-display text-3xl font-bold tracking-tight">Zaloguj się</h1>
+      <p class="mt-2 text-sm leading-relaxed text-neutral-600">
+        Logowanie tokenem GitHuba z prawem zapisu do repozytorium strony. Token zostaje tylko w tej karcie przeglądarki i znika po jej zamknięciu.
+      </p>
+
+      <form id="login-form" class="mt-6 grid gap-4" autocomplete="off">
+        <div class="grid gap-4 sm:grid-cols-2">
+          <label class="grid gap-1.5 text-sm">
+            <span class="text-neutral-600">Użytkownik GitHub</span>
+            <input id="owner" required maxlength="39" class="rounded-xl border border-black/10 bg-white/70 px-3 py-2.5 outline-none focus:border-black" />
+          </label>
+          <label class="grid gap-1.5 text-sm">
+            <span class="text-neutral-600">Repozytorium</span>
+            <input id="repo" required maxlength="100" class="rounded-xl border border-black/10 bg-white/70 px-3 py-2.5 outline-none focus:border-black" />
+          </label>
+        </div>
+        <label class="grid gap-1.5 text-sm">
+          <span class="text-neutral-600">Token (fine-grained, tylko to repo, Contents: read &amp; write)</span>
+          <input id="token" type="password" required maxlength="255" autocomplete="off" spellcheck="false" class="rounded-xl border border-black/10 bg-white/70 px-3 py-2.5 font-mono text-sm outline-none focus:border-black" />
+        </label>
+        <button type="submit" class="mt-2 rounded-full bg-black px-6 py-3 text-sm font-medium text-white transition hover:bg-neutral-800 disabled:opacity-50">Zaloguj</button>
+        <p id="login-msg" class="min-h-[1.25rem] text-sm text-neutral-600" role="status"></p>
+      </form>
+    </section>
+
+    <!-- EDYTOR -->
+    <section id="editor-view" class="hidden">
+      <div class="glass rounded-[28px] p-6 sm:p-8">
+        <div class="flex items-baseline justify-between gap-4">
+          <h1 id="form-title" class="font-display text-3xl font-bold tracking-tight">Nowy wpis</h1>
+          <button id="cancel-edit" type="button" class="hidden text-sm text-neutral-500 underline-offset-4 hover:underline">anuluj edycję</button>
+        </div>
+
+        <form id="post-form" class="mt-6 grid gap-4" autocomplete="off">
+          <div class="grid gap-4 sm:grid-cols-[1fr_170px]">
+            <label class="grid gap-1.5 text-sm">
+              <span class="text-neutral-600">Tytuł</span>
+              <input id="f-title" required maxlength="120" class="rounded-xl border border-black/10 bg-white/70 px-3 py-2.5 outline-none focus:border-black" />
+            </label>
+            <label class="grid gap-1.5 text-sm">
+              <span class="text-neutral-600">Data</span>
+              <input id="f-date" type="date" required class="rounded-xl border border-black/10 bg-white/70 px-3 py-2.5 outline-none focus:border-black" />
+            </label>
+          </div>
+          <label class="grid gap-1.5 text-sm">
+            <span class="text-neutral-600">Treść <span class="text-neutral-400">(pusta linia = nowy akapit)</span></span>
+            <textarea id="f-text" required maxlength="5000" rows="7" class="rounded-xl border border-black/10 bg-white/70 px-3 py-2.5 leading-relaxed outline-none focus:border-black"></textarea>
+          </label>
+          <label class="grid gap-1.5 text-sm">
+            <span class="text-neutral-600">Tagi <span class="text-neutral-400">(po przecinku, max 5)</span></span>
+            <input id="f-tags" maxlength="150" placeholder="PCB, firmware" class="rounded-xl border border-black/10 bg-white/70 px-3 py-2.5 outline-none focus:border-black" />
+          </label>
+          <button id="save-btn" type="submit" class="mt-2 rounded-full bg-black px-6 py-3 text-sm font-medium text-white transition hover:bg-neutral-800 disabled:opacity-50">Opublikuj</button>
+          <p id="post-msg" class="min-h-[1.25rem] text-sm text-neutral-600" role="status"></p>
+        </form>
+      </div>
+
+      <div class="glass mt-6 rounded-[28px] p-6 sm:p-8">
+        <h2 class="font-display text-xl font-bold tracking-tight">Opublikowane</h2>
+        <ul id="post-list" class="mt-4 divide-y divide-black/10"></ul>
+      </div>
+    </section>
+  </main>
+
+  <script src="admin.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
