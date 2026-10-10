@@ -1,13 +1,1 @@
-[
-  {
-    "id": "start",
-    "date": "2026-09-02",
-    "title": "Zaczynam",
-    "text": "Buduję własną kamerę 360°. Schemat, PCB, firmware, soft do sklejania obrazu — wszystko sam. Tutaj będę wrzucał, co udało się zrobić, a co spaliłem.",
-    "title_en": "Starting out",
-    "text_en": "I'm building my own 360° camera. Schematic, PCB, firmware, stitching software — all by myself. I'll post here what worked and what I burned.",
-    "tags": [
-      "start"
-    ]
-  }
-]
+[]
