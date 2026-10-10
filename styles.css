@@ -468,3 +468,34 @@ body {
   opacity: 0.45;
   cursor: default;
 }
+
+/* ---------- Ikonki: wyrównanie wizualne (TikTok jest wysoki, YT i Discord szerokie) ---------- */
+[data-social="youtube"] .social-btn svg,
+[data-social="discord"] .social-btn svg { width: 20px; height: 20px; }
+[data-social="tiktok"] .social-btn svg { width: 16px; height: 16px; margin: 0 2px; }
+
+/* ---------- Polityka prywatności ---------- */
+.legal h1 {
+  font-family: "Inter Tight", "Inter", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(2.25rem, 6vw, 3.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+.legal-date { margin-top: 12px; color: #737373; }
+.legal-summary {
+  margin: 32px 0 8px;
+  padding: 20px 24px;
+  border-radius: 22px;
+  line-height: 1.6;
+}
+.legal h2 {
+  margin-top: 40px;
+  font-family: "Inter Tight", "Inter", system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 1.35rem;
+  letter-spacing: -0.02em;
+}
+.legal p { margin-top: 12px; line-height: 1.75; color: #404040; }
+.legal a { color: #0b0b0c; text-decoration: underline; text-underline-offset: 3px; }
+.legal code { font-size: 0.9em; padding: 1px 6px; border-radius: 6px; background: rgba(0, 0, 0, 0.06); }

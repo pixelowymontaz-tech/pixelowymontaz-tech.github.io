@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.country.is; object-src 'none'; base-uri 'self'; form-action 'self'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title data-i18n-title="meta.title">MOVO — a 360° camera from scratch · Ignacy</title>
   <meta name="description" data-i18n-desc content="MOVO — a 360° camera built from scratch. Electronics, PCB, then stitching software." />
@@ -19,10 +19,7 @@
   <meta property="og:url" content="https://pixelowymontaz-tech.github.io/" />
   <meta property="og:image" content="https://pixelowymontaz-tech.github.io/assets/og.png" />
   <meta name="twitter:card" content="summary_large_image" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700;800&family=Poppins:wght@800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="fonts.css" />
 
   <link rel="stylesheet" href="tw.css" />
   <link rel="stylesheet" href="styles.css" />
@@ -233,7 +230,7 @@
     </div>
     <div class="mx-auto mt-6 flex max-w-6xl justify-between px-2 text-xs text-neutral-500">
       <span>© <span data-year></span> Ignacy · <span class="logo">MOVO</span></span>
-      <a href="#" data-i18n="footer.top" class="hover:text-white">back to top</a>
+      <span class="flex gap-5"><a href="privacy.html" data-i18n="footer.privacy" class="hover:text-white">Privacy &amp; cookies</a><a href="#" data-i18n="footer.top" class="hover:text-white">back to top</a></span>
     </div>
     <div class="footer-mark" aria-hidden="true">MOVO</div>
   </footer>

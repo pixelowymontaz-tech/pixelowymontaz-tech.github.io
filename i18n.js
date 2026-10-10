@@ -1,8 +1,9 @@
 // Tłumaczenia EN / PL.
 // Domyślnie strona jest po angielsku (tekst w HTML). Elementy z data-i18n="klucz"
 // dostają tekst z tego słownika — zawsze przez textContent, nigdy jako HTML.
-// Kraj sprawdzany jest po IP (api.country.is) — tylko po to, żeby zaproponować
-// polską wersję. Wybór zapisuje się w przeglądarce, więc pytamy raz.
+// Polską wersję proponujemy, gdy przeglądarka jest w polskiej strefie czasowej
+// albo ma polski język — sprawdzane lokalnie, bez wysyłania IP.
+// Wybór zapisuje się w przeglądarce (localStorage), więc pytamy raz.
 
 (function () {
   const DICT = {
@@ -58,6 +59,8 @@
       "social.soon": "Coming soon",
       "contact.copied": "Copied!",
       "footer.top": "back to top",
+      "footer.privacy": "Privacy & cookies",
+      "privacy.meta": "Privacy & cookies — MOVO",
       "blog.meta": "Log — MOVO",
       "blog.title": "Log",
       "blog.lead": "Everything in order: what I did, what didn't work and what's next. Posts:",
@@ -120,6 +123,8 @@
       "social.soon": "Wkrótce",
       "contact.copied": "Skopiowano!",
       "footer.top": "do góry",
+      "footer.privacy": "Prywatność i cookies",
+      "privacy.meta": "Prywatność i cookies — MOVO",
       "blog.meta": "Dziennik — MOVO",
       "blog.title": "Dziennik",
       "blog.lead": "Wszystko po kolei: co zrobiłem, co nie wyszło i co dalej. Wpisów:",
@@ -145,6 +150,8 @@
 
   function apply() {
     document.documentElement.lang = lang;
+    // długie teksty (np. polityka prywatności) mają osobne bloki dla każdego języka
+    document.querySelectorAll("[data-lang-block]").forEach((el) => (el.hidden = el.dataset.langBlock !== lang));
     // podpis etapu wynika z jego statusu (data-stage="done|now|later")
     document.querySelectorAll("[data-stage]").forEach((li) => {
       const label = li.querySelector("[data-stage-label]");
@@ -214,16 +221,10 @@
     document.body.appendChild(box);
   }
 
-  const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), 3500);
-  fetch("https://api.country.is/", { signal: ctrl.signal, referrerPolicy: "no-referrer", credentials: "omit" })
-    .then((r) => (r.ok ? r.json() : null))
-    .then((d) => {
-      if (d && typeof d.country === "string" && d.country.toUpperCase() === "PL") offerPolish();
-    })
-    .catch(() => {
-      // usługa niedostępna (np. blokada reklam) — awaryjnie patrzymy na język przeglądarki
-      if ((navigator.language || "").toLowerCase().startsWith("pl")) offerPolish();
-    })
-    .finally(() => clearTimeout(timer));
+  // Polska = strefa czasowa Europe/Warsaw albo polski język przeglądarki.
+  // Wszystko sprawdzane lokalnie — nic nie jest nigdzie wysyłane.
+  let tz = "";
+  try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || ""; } catch (_) {}
+  const langs = (navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ""]).map((l) => String(l).toLowerCase());
+  if (tz === "Europe/Warsaw" || langs.some((l) => l.startsWith("pl"))) setTimeout(offerPolish, 1200);
 })();

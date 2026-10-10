@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://api.country.is; object-src 'none'; base-uri 'self'; form-action 'self'" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title data-i18n-title="blog.meta">Log — MOVO</title>
   <meta name="description" content="Every post from building the MOVO 360° camera." />
@@ -13,10 +13,7 @@
   <meta property="og:title" content="Log — MOVO" />
   <meta property="og:description" content="Every post from building the MOVO 360° camera." />
   <meta property="og:image" content="https://pixelowymontaz-tech.github.io/assets/og.png" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Inter+Tight:wght@500;600;700;800&family=Poppins:wght@800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="fonts.css" />
 
   <link rel="stylesheet" href="tw.css" />
   <link rel="stylesheet" href="styles.css" />
@@ -49,7 +46,7 @@
   <footer data-dark class="bg-black px-4 py-10 text-white sm:px-6 lg:px-8">
     <div class="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 text-sm">
       <a data-mail data-u="movo.contact" data-d="gmail.com" href="index.html#contact" class="font-display text-lg font-bold hover:text-neutral-400">e-mail</a>
-      <span class="text-xs text-neutral-500">© <span data-year></span> Ignacy · <span class="logo">MOVO</span></span>
+      <span class="flex items-center gap-5 text-xs text-neutral-500"><a href="privacy.html" data-i18n="footer.privacy" class="hover:text-white">Privacy &amp; cookies</a><span>© <span data-year></span> Ignacy · <span class="logo">MOVO</span></span></span>
     </div>
   </footer>
 
