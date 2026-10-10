@@ -16,10 +16,20 @@
     return n;
   }
 
+  const I18N = window.MOVO_I18N || { get: () => "en", t: () => "" };
+  const lang = () => I18N.get();
+
   function formatDate(iso) {
     const d = new Date(iso + "T00:00:00");
     if (isNaN(d)) return "";
-    return d.toLocaleDateString("pl-PL", { day: "numeric", month: "long", year: "numeric" });
+    return d.toLocaleDateString(lang() === "pl" ? "pl-PL" : "en-GB", { day: "numeric", month: "long", year: "numeric" });
+  }
+
+  // Wpis ma treść po polsku (title/text) i opcjonalnie po angielsku (title_en/text_en).
+  // Brakująca wersja językowa → pokazujemy tę, która jest.
+  function localized(p) {
+    if (lang() === "en") return { title: p.title_en || p.title, text: p.text_en || p.text };
+    return { title: p.title || p.title_en, text: p.text || p.text_en };
   }
 
   function paragraphs(text) {
@@ -40,9 +50,10 @@
     time.dateTime = p.date;
     art.appendChild(time);
 
+    const loc = localized(p);
     const body = el("div");
-    body.appendChild(el("h3", "font-display text-2xl font-semibold tracking-tight md:text-[1.75rem]", p.title));
-    const text = paragraphs(p.text);
+    body.appendChild(el("h3", "font-display text-2xl font-semibold tracking-tight md:text-[1.75rem]", loc.title));
+    const text = paragraphs(loc.text);
     text.className += " mt-3 max-w-2xl leading-relaxed text-neutral-600" + (short ? " line-clamp-3" : "");
     body.appendChild(text);
 
@@ -87,22 +98,29 @@
   // ---------- Wpisy ----------
   const containers = document.querySelectorAll("[data-posts]");
   const needsPosts = containers.length || document.querySelector("[data-latest],[data-post-count]");
+  let posts = null;
+  function renderAll() {
+    if (!posts) return;
+    containers.forEach((c) => {
+      const limit = parseInt(c.dataset.limit || "0", 10);
+      const list = limit > 0 ? posts.slice(0, limit) : posts;
+      c.replaceChildren(...list.map((p, i) => renderPost(p, i, limit > 0)));
+      if (!list.length) c.appendChild(el("p", "py-9 text-neutral-500", I18N.t("posts.empty")));
+      observe(c);
+    });
+    document.querySelectorAll("[data-post-count]").forEach((n) => (n.textContent = posts.length));
+    document.querySelectorAll("[data-latest]").forEach((n) => (n.textContent = posts[0] ? localized(posts[0]).title : "—"));
+  }
   if (needsPosts) {
     loadPosts()
-      .then((posts) => {
-        containers.forEach((c) => {
-          const limit = parseInt(c.dataset.limit || "0", 10);
-          const list = limit > 0 ? posts.slice(0, limit) : posts;
-          c.replaceChildren(...list.map((p, i) => renderPost(p, i, limit > 0)));
-          if (!list.length) c.appendChild(el("p", "py-9 text-neutral-500", "Na razie pusto."));
-          observe(c);
-        });
-        document.querySelectorAll("[data-post-count]").forEach((n) => (n.textContent = posts.length));
-        document.querySelectorAll("[data-latest]").forEach((n) => (n.textContent = posts[0] ? posts[0].title : "—"));
+      .then((list) => {
+        posts = list;
+        renderAll();
       })
       .catch(() => {
-        containers.forEach((c) => c.replaceChildren(el("p", "py-9 text-neutral-500", "Nie udało się wczytać wpisów.")));
+        containers.forEach((c) => c.replaceChildren(el("p", "py-9 text-neutral-500", I18N.t("posts.error"))));
       });
+    document.addEventListener("movo:lang", renderAll);
   }
 
   // ---------- Odblask na szkle ----------

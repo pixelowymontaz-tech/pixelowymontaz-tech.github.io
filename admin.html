@@ -7,7 +7,7 @@
   <meta name="referrer" content="no-referrer" />
   <meta name="robots" content="noindex, nofollow" />
   <title>Panel — MOVO</title>
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="assets/favicon-48.png" type="image/png" sizes="48x48" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -22,61 +22,118 @@
   <div class="pointer-events-none fixed -bottom-32 -left-20 aspect-square w-[60vw] max-w-[420px] rounded-full border border-black/15" aria-hidden="true"></div>
 
   <main class="relative mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-16">
-    <div class="mb-8 flex items-center justify-between">
+    <div class="mb-8 flex items-center justify-between gap-3">
       <a href="index.html" class="logo text-xl">MOVO <span class="font-sans font-medium tracking-normal text-neutral-400">/ panel</span></a>
-      <button id="logout" type="button" class="glass hidden rounded-full px-4 py-1.5 text-sm">Wyloguj</button>
+      <div id="session-actions" class="hidden gap-2">
+        <button id="change-pass" type="button" class="glass rounded-full px-4 py-1.5 text-sm">Zmień hasło</button>
+        <button id="logout" type="button" class="glass rounded-full px-4 py-1.5 text-sm">Wyloguj</button>
+      </div>
     </div>
 
-    <!-- LOGOWANIE -->
-    <section id="login-view" class="glass rounded-[28px] p-6 sm:p-8">
-      <h1 class="font-display text-3xl font-bold tracking-tight">Zaloguj się</h1>
-      <p class="mt-2 text-sm leading-relaxed text-neutral-600">
-        Logowanie tokenem GitHuba z prawem zapisu do repozytorium strony. Token zostaje tylko w tej karcie przeglądarki i znika po jej zamknięciu.
-      </p>
+    <p id="loading" class="glass glass-panel rounded-[28px] p-6 text-sm text-neutral-600">Ładuję…</p>
 
-      <form id="login-form" class="mt-6 grid gap-4" autocomplete="off">
-        <div class="grid gap-4 sm:grid-cols-2">
-          <label class="grid gap-1.5 text-sm">
-            <span class="text-neutral-600">Użytkownik GitHub</span>
-            <input id="owner" required maxlength="39" class="rounded-xl border border-black/10 bg-white/70 px-3 py-2.5 outline-none focus:border-black" />
-          </label>
-          <label class="grid gap-1.5 text-sm">
-            <span class="text-neutral-600">Repozytorium</span>
-            <input id="repo" required maxlength="100" class="rounded-xl border border-black/10 bg-white/70 px-3 py-2.5 outline-none focus:border-black" />
-          </label>
-        </div>
+    <!-- LOGOWANIE HASŁEM -->
+    <section id="login-view" class="glass glass-panel hidden rounded-[28px] p-6 sm:p-8">
+      <h1 class="font-display text-3xl font-bold tracking-tight">Zaloguj się</h1>
+      <form id="login-form" class="mt-6 grid gap-4" autocomplete="on">
+        <input type="text" name="username" value="movo-admin" autocomplete="username" class="hidden" aria-hidden="true" tabindex="-1" readonly />
         <label class="grid gap-1.5 text-sm">
-          <span class="text-neutral-600">Token (fine-grained, tylko to repo, Contents: read &amp; write)</span>
-          <input id="token" type="password" required maxlength="255" autocomplete="off" spellcheck="false" class="rounded-xl border border-black/10 bg-white/70 px-3 py-2.5 font-mono text-sm outline-none focus:border-black" />
+          <span class="text-neutral-600">Hasło</span>
+          <input id="password" type="password" required maxlength="200" autocomplete="current-password" class="rounded-xl border border-black/10 bg-white/70 px-3 py-2.5 outline-none focus:border-black" />
         </label>
         <button type="submit" class="mt-2 rounded-full bg-black px-6 py-3 text-sm font-medium text-white transition hover:bg-neutral-800 disabled:opacity-50">Zaloguj</button>
         <p id="login-msg" class="min-h-[1.25rem] text-sm text-neutral-600" role="status"></p>
+      </form>
+      <button id="forgot" type="button" class="text-sm text-neutral-500 underline-offset-4 hover:text-black hover:underline">Nie pamiętam hasła</button>
+    </section>
+
+    <!-- PIERWSZA KONFIGURACJA / RESET -->
+    <section id="setup-view" class="glass glass-panel hidden rounded-[28px] p-6 sm:p-8">
+      <h1 id="setup-title" class="font-display text-3xl font-bold tracking-tight">Pierwsza konfiguracja</h1>
+      <p class="mt-2 text-sm leading-relaxed text-neutral-600">
+        Robisz to tylko raz. Wklejasz token z GitHuba i ustawiasz hasło. Token zostanie zaszyfrowany tym hasłem,
+        a potem logujesz się już samym hasłem, z każdego urządzenia.
+      </p>
+      <ol class="mt-4 list-decimal space-y-1 pl-5 text-sm text-neutral-600">
+        <li><a id="token-link" href="#" target="_blank" rel="noopener noreferrer" class="font-medium text-black underline underline-offset-4">Otwórz tworzenie tokenu na GitHubie</a></li>
+        <li>„Repository access” → <b>Only select repositories</b> → wybierz <b>pixelowymontaz-tech.github.io</b></li>
+        <li>„Permissions” → <b>Contents: Read and write</b> → <b>Generate token</b> → skopiuj</li>
+      </ol>
+
+      <form id="setup-form" class="mt-6 grid gap-4" autocomplete="off">
+        <input type="text" name="username" value="movo-admin" autocomplete="username" class="hidden" aria-hidden="true" tabindex="-1" readonly />
+        <label class="grid gap-1.5 text-sm">
+          <span class="text-neutral-600">Token z GitHuba</span>
+          <input id="setup-token" type="password" required maxlength="255" autocomplete="off" spellcheck="false" class="rounded-xl border border-black/10 bg-white/70 px-3 py-2.5 font-mono text-sm outline-none focus:border-black" />
+        </label>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <label class="grid gap-1.5 text-sm">
+            <span class="text-neutral-600">Nowe hasło (min. 12 znaków)</span>
+            <input id="setup-pass" type="password" required minlength="12" maxlength="200" autocomplete="new-password" class="rounded-xl border border-black/10 bg-white/70 px-3 py-2.5 outline-none focus:border-black" />
+          </label>
+          <label class="grid gap-1.5 text-sm">
+            <span class="text-neutral-600">Powtórz hasło</span>
+            <input id="setup-pass2" type="password" required minlength="12" maxlength="200" autocomplete="new-password" class="rounded-xl border border-black/10 bg-white/70 px-3 py-2.5 outline-none focus:border-black" />
+          </label>
+        </div>
+        <p class="text-xs leading-relaxed text-neutral-500">Najlepiej 3–4 przypadkowe słowa, np. „lutownica-kaktus-orbita-7”. Nie używaj hasła z innych stron.</p>
+        <button type="submit" class="mt-2 rounded-full bg-black px-6 py-3 text-sm font-medium text-white transition hover:bg-neutral-800 disabled:opacity-50">Zapisz i zaloguj</button>
+        <p id="setup-msg" class="min-h-[1.25rem] text-sm text-neutral-600" role="status"></p>
+      </form>
+      <button id="back-to-login" type="button" class="hidden text-sm text-neutral-500 underline-offset-4 hover:text-black hover:underline">← wróć do logowania</button>
+    </section>
+
+    <!-- ZMIANA HASŁA -->
+    <section id="pass-view" class="glass glass-panel mb-6 hidden rounded-[28px] p-6 sm:p-8">
+      <h2 class="font-display text-xl font-bold tracking-tight">Zmień hasło</h2>
+      <form id="pass-form" class="mt-4 grid gap-4 sm:grid-cols-2" autocomplete="off">
+        <input type="text" name="username" value="movo-admin" autocomplete="username" class="hidden" aria-hidden="true" tabindex="-1" readonly />
+        <input id="new-pass" type="password" required minlength="12" maxlength="200" placeholder="Nowe hasło (min. 12)" autocomplete="new-password" class="rounded-xl border border-black/10 bg-white/70 px-3 py-2.5 outline-none focus:border-black" />
+        <input id="new-pass2" type="password" required minlength="12" maxlength="200" placeholder="Powtórz" autocomplete="new-password" class="rounded-xl border border-black/10 bg-white/70 px-3 py-2.5 outline-none focus:border-black" />
+        <button type="submit" class="rounded-full bg-black px-6 py-2.5 text-sm font-medium text-white transition hover:bg-neutral-800 disabled:opacity-50 sm:col-span-2">Zapisz nowe hasło</button>
+        <p id="pass-msg" class="min-h-[1.25rem] text-sm text-neutral-600 sm:col-span-2" role="status"></p>
       </form>
     </section>
 
     <!-- EDYTOR -->
     <section id="editor-view" class="hidden">
-      <div class="glass rounded-[28px] p-6 sm:p-8">
+      <div class="glass glass-panel rounded-[28px] p-6 sm:p-8">
         <div class="flex items-baseline justify-between gap-4">
           <h1 id="form-title" class="font-display text-3xl font-bold tracking-tight">Nowy wpis</h1>
           <button id="cancel-edit" type="button" class="hidden text-sm text-neutral-500 underline-offset-4 hover:underline">anuluj edycję</button>
         </div>
 
         <form id="post-form" class="mt-6 grid gap-4" autocomplete="off">
-          <div class="grid gap-4 sm:grid-cols-[1fr_170px]">
+          <label class="grid gap-1.5 text-sm sm:max-w-[200px]">
+            <span class="text-neutral-600">Data</span>
+            <input id="f-date" type="date" required class="rounded-xl border border-black/10 bg-white/70 px-3 py-2.5 outline-none focus:border-black" />
+          </label>
+
+          <fieldset class="grid gap-4 rounded-2xl border border-black/10 p-4">
+            <legend class="px-1 text-xs font-medium uppercase tracking-wider text-neutral-500">Po polsku</legend>
             <label class="grid gap-1.5 text-sm">
               <span class="text-neutral-600">Tytuł</span>
               <input id="f-title" required maxlength="120" class="rounded-xl border border-black/10 bg-white/70 px-3 py-2.5 outline-none focus:border-black" />
             </label>
             <label class="grid gap-1.5 text-sm">
-              <span class="text-neutral-600">Data</span>
-              <input id="f-date" type="date" required class="rounded-xl border border-black/10 bg-white/70 px-3 py-2.5 outline-none focus:border-black" />
+              <span class="text-neutral-600">Treść <span class="text-neutral-400">(pusta linia = nowy akapit)</span></span>
+              <textarea id="f-text" required maxlength="5000" rows="6" class="rounded-xl border border-black/10 bg-white/70 px-3 py-2.5 leading-relaxed outline-none focus:border-black"></textarea>
             </label>
-          </div>
-          <label class="grid gap-1.5 text-sm">
-            <span class="text-neutral-600">Treść <span class="text-neutral-400">(pusta linia = nowy akapit)</span></span>
-            <textarea id="f-text" required maxlength="5000" rows="7" class="rounded-xl border border-black/10 bg-white/70 px-3 py-2.5 leading-relaxed outline-none focus:border-black"></textarea>
-          </label>
+          </fieldset>
+
+          <fieldset class="grid gap-4 rounded-2xl border border-black/10 p-4">
+            <legend class="px-1 text-xs font-medium uppercase tracking-wider text-neutral-500">In English <span class="normal-case tracking-normal text-neutral-400">(opcjonalnie)</span></legend>
+            <label class="grid gap-1.5 text-sm">
+              <span class="text-neutral-600">Title</span>
+              <input id="f-title-en" maxlength="120" class="rounded-xl border border-black/10 bg-white/70 px-3 py-2.5 outline-none focus:border-black" />
+            </label>
+            <label class="grid gap-1.5 text-sm">
+              <span class="text-neutral-600">Text</span>
+              <textarea id="f-text-en" maxlength="5000" rows="6" class="rounded-xl border border-black/10 bg-white/70 px-3 py-2.5 leading-relaxed outline-none focus:border-black"></textarea>
+            </label>
+            <p class="text-xs text-neutral-500">Jak zostawisz puste, angielska wersja strony pokaże wpis po polsku.</p>
+          </fieldset>
+
           <label class="grid gap-1.5 text-sm">
             <span class="text-neutral-600">Tagi <span class="text-neutral-400">(po przecinku, max 5)</span></span>
             <input id="f-tags" maxlength="150" placeholder="PCB, firmware" class="rounded-xl border border-black/10 bg-white/70 px-3 py-2.5 outline-none focus:border-black" />
@@ -86,7 +143,7 @@
         </form>
       </div>
 
-      <div class="glass mt-6 rounded-[28px] p-6 sm:p-8">
+      <div class="glass glass-panel mt-6 rounded-[28px] p-6 sm:p-8">
         <h2 class="font-display text-xl font-bold tracking-tight">Opublikowane</h2>
         <ul id="post-list" class="mt-4 divide-y divide-black/10"></ul>
       </div>

@@ -52,6 +52,11 @@ body {
   mask-composite: exclude;
 }
 
+/* formularze panelu — tekst musi być czytelny nad czarnym tłem */
+.glass-panel {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.82));
+}
+
 /* nawigacja musi być czytelna także nad czarną soczewką */
 .glass-nav {
   background: linear-gradient(135deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.6));
