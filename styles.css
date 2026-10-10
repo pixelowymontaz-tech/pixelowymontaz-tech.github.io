@@ -440,3 +440,31 @@ body {
   background: #fff;
   color: #0b0b0c;
 }
+
+/* ---------- Ikonki kont (YouTube / Discord / TikTok) ---------- */
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px 10px 14px;
+  border-radius: 999px;
+  border: 1px solid;
+  font-weight: 500;
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+.social-btn svg {
+  width: 18px;
+  height: 18px;
+  fill: currentColor;
+  flex: none;
+}
+.social-btn:not(.is-soon):hover { transform: translateY(-2px); }
+.social-dark { border-color: rgba(255, 255, 255, 0.15); color: #fff; }
+.social-dark:not(.is-soon):hover { background: #fff; color: #0b0b0c; }
+.social-light { border-color: rgba(0, 0, 0, 0.1); color: #0b0b0c; background: rgba(255, 255, 255, 0.6); }
+.social-light:not(.is-soon):hover { background: #0b0b0c; color: #fff; border-color: #0b0b0c; }
+/* bez linku: widoczne, ale przygaszone */
+.social-btn.is-soon {
+  opacity: 0.45;
+  cursor: default;
+}

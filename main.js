@@ -190,20 +190,26 @@ const SOCIAL = {
     youtube: /^(www\.|m\.)?(youtube\.com|youtu\.be)$/,
     tiktok: /^(www\.)?tiktok\.com$/,
   };
-  let anySocial = false;
-  document.querySelectorAll("[data-social]").forEach((li) => {
-    const kind = li.dataset.social;
-    let url;
-    try { url = new URL(SOCIAL[kind] || ""); } catch (_) { return; }
-    if (url.protocol !== "https:" || !SOCIAL_HOSTS[kind] || !SOCIAL_HOSTS[kind].test(url.hostname)) return;
-    li.querySelector("a").href = url.href;
-    li.classList.remove("hidden");
-    anySocial = true;
-  });
-  document.querySelectorAll("[data-social-list]").forEach((ul) => {
-    ul.classList.toggle("hidden", !anySocial);
-    ul.classList.toggle("flex", anySocial);
-  });
+  // bez linku ikonka jest widoczna, ale przygaszona, z dymkiem „Wkrótce”
+  function setupSocial() {
+    document.querySelectorAll("[data-social]").forEach((li) => {
+      const a = li.querySelector("a");
+      const kind = li.dataset.social;
+      let url = null;
+      try { url = new URL(SOCIAL[kind] || ""); } catch (_) {}
+      if (url && url.protocol === "https:" && SOCIAL_HOSTS[kind] && SOCIAL_HOSTS[kind].test(url.hostname)) {
+        a.href = url.href;
+        a.classList.remove("is-soon");
+        a.removeAttribute("title");
+      } else {
+        a.removeAttribute("href");
+        a.classList.add("is-soon");
+        a.title = I18N.t("social.soon");
+      }
+    });
+  }
+  setupSocial();
+  document.addEventListener("movo:lang", setupSocial);
 
   // ---------- E-mail składany w przeglądarce (nie ma go w kodzie wprost) ----------
   document.querySelectorAll("[data-mail]").forEach((a) => {
