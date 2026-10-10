@@ -21,7 +21,15 @@
       "about.p2": "I design the electronics and the PCB myself. Later I'll also write the software that stitches the images from two lenses into one panorama. I'm learning everything as I go, so plenty of things don't work the first time.",
       "about.p3": "This is where I write down what I did, what didn't work and what's next.",
       "stages.title": "Where I'm at",
-      "stages.lead": "Build stages, roughly in order. The dots show what's already behind me.",
+      "stages.lead": "Build stages, roughly in order. The black one is where I am right now.",
+      "id.age": "Age",
+      "id.role": "Role",
+      "id.roleV": "Builder",
+      "id.project": "Project",
+      "id.projectV": "360° camera",
+      "id.status": "Status",
+      "id.statusV": "Planning",
+      "posts.emptySub": "The first post is coming soon. Planning comes first.",
       "st.done": "done",
       "st.now": "now",
       "st.later": "later",
@@ -40,7 +48,7 @@
       "goals.title": "What I'm aiming for",
       "goals.lead": "Not promises, just goals. We'll see how much of this survives contact with reality.",
       "g1": "fisheye lenses, ~200° each",
-      "g2": "target panorama resolution",
+      "g2": "target panorama: 8K resolution at 30 frames per second",
       "g3": "all the electronics on one board",
       "g4.v": "$0",
       "g4": "on off-the-shelf camera modules. All my own",
@@ -71,7 +79,15 @@
       "about.p2": "Sam projektuję elektronikę i płytkę PCB. Docelowo napiszę też oprogramowanie, które skleja obraz z dwóch obiektywów w jedną panoramę. Uczę się wszystkiego w trakcie, więc sporo rzeczy nie wychodzi za pierwszym razem.",
       "about.p3": "Tutaj zapisuję, co zrobiłem, co nie zadziałało i co dalej.",
       "stages.title": "Gdzie jestem",
-      "stages.lead": "Etapy budowy, mniej więcej po kolei. Kropka pokazuje, co już jest za mną.",
+      "stages.lead": "Etapy budowy, mniej więcej po kolei. Czarny to ten, na którym jestem teraz.",
+      "id.age": "Wiek",
+      "id.role": "Rola",
+      "id.roleV": "Konstruktor",
+      "id.project": "Projekt",
+      "id.projectV": "Kamera 360°",
+      "id.status": "Status",
+      "id.statusV": "Planowanie",
+      "posts.emptySub": "Pierwszy wpis już wkrótce. Najpierw planowanie.",
       "st.done": "zrobione",
       "st.now": "teraz",
       "st.later": "później",
@@ -90,7 +106,7 @@
       "goals.title": "Do czego dążę",
       "goals.lead": "To nie są obietnice, tylko cele. Zobaczymy, ile z tego przeżyje kontakt z rzeczywistością.",
       "g1": "obiektywy rybie oko, ~200° każdy",
-      "g2": "docelowa rozdzielczość panoramy",
+      "g2": "docelowo panorama 8K przy 30 klatkach na sekundę",
       "g3": "cała elektronika na jednej płytce",
       "g4.v": "0 zł",
       "g4": "na gotowe moduły kamer. Wszystko własne",
@@ -121,6 +137,11 @@
 
   function apply() {
     document.documentElement.lang = lang;
+    // podpis etapu wynika z jego statusu (data-stage="done|now|later")
+    document.querySelectorAll("[data-stage]").forEach((li) => {
+      const label = li.querySelector("[data-stage-label]");
+      if (label) label.dataset.i18n = "st." + li.dataset.stage;
+    });
     document.querySelectorAll("[data-i18n]").forEach((el) => {
       const v = t(el.dataset.i18n);
       if (v) el.textContent = v;

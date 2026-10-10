@@ -61,21 +61,57 @@
           </p>
         </div>
       </div>
+
+      <!-- wskaźnik przewijania -->
+      <a href="#about" class="scroll-cue absolute bottom-6 left-1/2 z-[3] -translate-x-1/2" aria-label="Scroll">
+        <span></span>
+      </a>
     </section>
+
+    <!-- PASEK — przewijający się tekst -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>360°</span><i></i><span>8K 30p</span><i></i><span>2× FISHEYE</span><i></i><span>PCB</span><i></i><span>DIY</span><i></i><span>MOVO</span><i></i>
+        <span>360°</span><i></i><span>8K 30p</span><i></i><span>2× FISHEYE</span><i></i><span>PCB</span><i></i><span>DIY</span><i></i><span>MOVO</span><i></i>
+      </div>
+    </div>
 
     <!-- O MNIE -->
     <section id="about" class="bg-white">
       <div class="mx-auto grid max-w-6xl gap-10 px-4 py-24 sm:px-6 md:grid-cols-[1fr_1.2fr] md:gap-16 md:py-36 lg:px-8">
-        <!-- Monogram zamiast zdjęcia — celowo bez twarzy -->
+        <!-- Karta-legitymacja zamiast zdjęcia — celowo bez twarzy -->
         <div class="reveal">
-          <div class="relative aspect-[4/5] w-full max-w-sm overflow-hidden rounded-[28px] bg-[#f4f4f3]" aria-hidden="true">
-            <div class="absolute -right-16 -top-10 aspect-square w-[85%] rounded-full bg-black"></div>
-            <div class="absolute -bottom-20 -left-16 aspect-square w-[75%] rounded-full border border-black/15"></div>
-            <div class="absolute bottom-10 left-10 aspect-square w-[22%] rounded-full bg-black"></div>
-            <div class="glass absolute inset-x-6 bottom-6 top-1/3 flex items-end justify-between rounded-[22px] p-6">
-              <span class="font-display text-[7rem] font-extrabold leading-[0.75] tracking-tighter">I</span>
-              <span class="text-right text-sm leading-snug text-neutral-600">Ignacy<br /><span class="logo">MOVO</span></span>
+          <div class="id-card glass relative w-full max-w-sm overflow-hidden rounded-[28px] p-7">
+            <div class="flex items-center justify-between">
+              <span class="logo text-sm">MOVO</span>
+              <span class="text-[11px] font-medium uppercase tracking-[0.2em] text-neutral-400">ID · 001</span>
             </div>
+
+            <p class="mt-14 font-display text-5xl font-bold tracking-tight">Ignacy</p>
+
+            <dl class="mt-8 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-black/10 pt-6 text-sm">
+              <div>
+                <dt data-i18n="id.age" class="text-xs uppercase tracking-wider text-neutral-400">Age</dt>
+                <dd class="mt-1 font-medium">13</dd>
+              </div>
+              <div>
+                <dt data-i18n="id.role" class="text-xs uppercase tracking-wider text-neutral-400">Role</dt>
+                <dd data-i18n="id.roleV" class="mt-1 font-medium">Builder</dd>
+              </div>
+              <div>
+                <dt data-i18n="id.project" class="text-xs uppercase tracking-wider text-neutral-400">Project</dt>
+                <dd data-i18n="id.projectV" class="mt-1 font-medium">360° camera</dd>
+              </div>
+              <div>
+                <dt data-i18n="id.status" class="text-xs uppercase tracking-wider text-neutral-400">Status</dt>
+                <dd class="mt-1 flex items-center gap-2 font-medium">
+                  <span class="relative flex h-2 w-2"><span class="absolute h-full w-full animate-ping rounded-full bg-black/40"></span><span class="relative h-2 w-2 rounded-full bg-black"></span></span>
+                  <span data-i18n="id.statusV">Planning</span>
+                </dd>
+              </div>
+            </dl>
+
+            <div class="barcode mt-8" aria-hidden="true"></div>
           </div>
         </div>
 
@@ -89,52 +125,47 @@
     </section>
 
     <!-- ETAPY
-         Statusy: "done" (pełna kropka), "now" (pulsuje), "later" (pusta).
-         Żeby zmienić status, podmień klasy kropki i data-i18n podpisu (st.done / st.now / st.later).
-         Teksty etapów są w i18n.js (s1.t, s1.d …). -->
+         Status etapu ustawiasz atrybutem data-stage: "done" (zrobione), "now" (teraz), "later" (później).
+         Wygląd i podpis zmieniają się same. Teksty etapów są w i18n.js (s1.t, s1.d …). -->
     <section id="stages">
       <div class="mx-auto max-w-6xl px-4 py-24 sm:px-6 md:py-36 lg:px-8">
         <h2 data-i18n="stages.title" class="reveal font-display text-4xl font-bold tracking-tight sm:text-5xl">Where I'm at</h2>
-        <p data-i18n="stages.lead" class="reveal mt-5 max-w-lg text-neutral-600">Build stages, roughly in order. The dots show what's already behind me.</p>
+        <p data-i18n="stages.lead" class="reveal mt-5 max-w-lg text-neutral-600">Build stages, roughly in order. The black one is where I am right now.</p>
 
-        <ol class="mt-14 grid md:grid-cols-5">
-          <li class="reveal relative border-l border-black/15 pb-10 pl-8 md:border-l-0 md:border-t md:pb-0 md:pl-0 md:pr-6 md:pt-8">
-            <span class="absolute -left-[7px] top-0 grid h-3.5 w-3.5 place-items-center md:-top-[7px] md:left-0">
-              <span class="absolute h-full w-full animate-ping rounded-full bg-black/30"></span>
-              <span class="relative h-3.5 w-3.5 rounded-full border-[3px] border-black bg-white"></span>
-            </span>
-            <p data-i18n="st.now" class="text-xs font-medium uppercase tracking-wider text-black">now</p>
-            <h3 data-i18n="s1.t" class="mt-2 font-display text-xl font-semibold tracking-tight">Planning</h3>
-            <p data-i18n="s1.d" class="mt-2 text-sm leading-relaxed text-neutral-600">Picking parts, the schematic, a plan for the whole thing.</p>
+        <ol class="mt-14 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+          <li class="stage reveal" data-stage="now">
+            <div class="flex items-center justify-between"><span class="stage-num">01</span><span class="stage-mark"></span></div>
+            <p data-stage-label class="stage-label">now</p>
+            <h3 data-i18n="s1.t" class="mt-1 font-display text-xl font-semibold tracking-tight">Planning</h3>
+            <p data-i18n="s1.d" class="stage-desc">Picking parts, the schematic, a plan for the whole thing.</p>
           </li>
-          <li class="reveal relative border-l border-black/15 pb-10 pl-8 md:border-l-0 md:border-t md:pb-0 md:pl-0 md:pr-6 md:pt-8" style="transition-delay:80ms">
-            <span class="absolute -left-[7px] top-0 h-3.5 w-3.5 rounded-full border border-black/30 bg-[#f4f4f3] md:-top-[7px] md:left-0"></span>
-            <p data-i18n="st.later" class="text-xs font-medium uppercase tracking-wider text-neutral-400">later</p>
-            <h3 data-i18n="s2.t" class="mt-2 font-display text-xl font-semibold tracking-tight text-neutral-500">PCB</h3>
-            <p data-i18n="s2.d" class="mt-2 text-sm leading-relaxed text-neutral-500">Layout, ordering, soldering the first version.</p>
+          <li class="stage reveal" data-stage="later" style="transition-delay:70ms">
+            <div class="flex items-center justify-between"><span class="stage-num">02</span><span class="stage-mark"></span></div>
+            <p data-stage-label class="stage-label">later</p>
+            <h3 data-i18n="s2.t" class="mt-1 font-display text-xl font-semibold tracking-tight">PCB</h3>
+            <p data-i18n="s2.d" class="stage-desc">Layout, ordering, soldering the first version.</p>
           </li>
-          <li class="reveal relative border-l border-black/15 pb-10 pl-8 md:border-l-0 md:border-t md:pb-0 md:pl-0 md:pr-6 md:pt-8" style="transition-delay:160ms">
-            <span class="absolute -left-[7px] top-0 h-3.5 w-3.5 rounded-full border border-black/30 bg-[#f4f4f3] md:-top-[7px] md:left-0"></span>
-            <p data-i18n="st.later" class="text-xs font-medium uppercase tracking-wider text-neutral-400">later</p>
-            <h3 data-i18n="s3.t" class="mt-2 font-display text-xl font-semibold tracking-tight text-neutral-500">Bring-up</h3>
-            <p data-i18n="s3.d" class="mt-2 text-sm leading-relaxed text-neutral-500">First image from the sensor. Or the first smoke.</p>
+          <li class="stage reveal" data-stage="later" style="transition-delay:140ms">
+            <div class="flex items-center justify-between"><span class="stage-num">03</span><span class="stage-mark"></span></div>
+            <p data-stage-label class="stage-label">later</p>
+            <h3 data-i18n="s3.t" class="mt-1 font-display text-xl font-semibold tracking-tight">Bring-up</h3>
+            <p data-i18n="s3.d" class="stage-desc">First image from the sensor. Or the first smoke.</p>
           </li>
-          <li class="reveal relative border-l border-black/15 pb-10 pl-8 md:border-l-0 md:border-t md:pb-0 md:pl-0 md:pr-6 md:pt-8" style="transition-delay:240ms">
-            <span class="absolute -left-[7px] top-0 h-3.5 w-3.5 rounded-full border border-black/30 bg-[#f4f4f3] md:-top-[7px] md:left-0"></span>
-            <p data-i18n="st.later" class="text-xs font-medium uppercase tracking-wider text-neutral-400">later</p>
-            <h3 data-i18n="s4.t" class="mt-2 font-display text-xl font-semibold tracking-tight text-neutral-500">Enclosure</h3>
-            <p data-i18n="s4.d" class="mt-2 text-sm leading-relaxed text-neutral-500">Something to fit it all in.</p>
+          <li class="stage reveal" data-stage="later" style="transition-delay:210ms">
+            <div class="flex items-center justify-between"><span class="stage-num">04</span><span class="stage-mark"></span></div>
+            <p data-stage-label class="stage-label">later</p>
+            <h3 data-i18n="s4.t" class="mt-1 font-display text-xl font-semibold tracking-tight">Enclosure</h3>
+            <p data-i18n="s4.d" class="stage-desc">Something to fit it all in.</p>
           </li>
-          <li class="reveal relative pl-8 md:border-t md:border-black/15 md:pl-0 md:pt-8" style="transition-delay:320ms">
-            <span class="absolute -left-[7px] top-0 h-3.5 w-3.5 rounded-full border border-black/30 bg-[#f4f4f3] md:-top-[7px] md:left-0"></span>
-            <p data-i18n="st.later" class="text-xs font-medium uppercase tracking-wider text-neutral-400">later</p>
-            <h3 data-i18n="s5.t" class="mt-2 font-display text-xl font-semibold tracking-tight text-neutral-500">Software</h3>
-            <p data-i18n="s5.d" class="mt-2 text-sm leading-relaxed text-neutral-500">Stitching two lenses into one panorama.</p>
+          <li class="stage reveal" data-stage="later" style="transition-delay:280ms">
+            <div class="flex items-center justify-between"><span class="stage-num">05</span><span class="stage-mark"></span></div>
+            <p data-stage-label class="stage-label">later</p>
+            <h3 data-i18n="s5.t" class="mt-1 font-display text-xl font-semibold tracking-tight">Software</h3>
+            <p data-i18n="s5.d" class="stage-desc">Stitching two lenses into one panorama.</p>
           </li>
         </ol>
       </div>
     </section>
-
     <!-- POSTĘPY -->
     <section id="updates" class="bg-white">
       <div class="mx-auto max-w-6xl px-4 py-24 sm:px-6 md:py-36 lg:px-8">
@@ -148,8 +179,7 @@
 
     <!-- CEL -->
     <section class="relative overflow-hidden bg-black text-white">
-      <div class="pointer-events-none absolute -left-24 top-10 aspect-square w-[70vw] max-w-[520px] rounded-full border border-white/10" aria-hidden="true"></div>
-      <div class="pointer-events-none absolute -right-16 bottom-0 aspect-square w-[45vw] max-w-[340px] rounded-full bg-neutral-800" aria-hidden="true"></div>
+      <div class="dots-dark pointer-events-none absolute inset-0" aria-hidden="true"></div>
 
       <div class="relative mx-auto max-w-6xl px-4 py-24 sm:px-6 md:py-36 lg:px-8">
         <h2 data-i18n="goals.title" class="reveal font-display text-4xl font-bold tracking-tight sm:text-5xl">What I'm aiming for</h2>
@@ -157,19 +187,19 @@
 
         <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <div class="reveal glass glass-dark rounded-[24px] p-6">
-            <p class="font-display text-4xl font-bold tracking-tight">2×</p>
+            <p class="logo text-4xl">2×</p>
             <p data-i18n="g1" class="mt-2 text-sm text-neutral-400">fisheye lenses, ~200° each</p>
           </div>
           <div class="reveal glass glass-dark rounded-[24px] p-6" style="transition-delay:80ms">
-            <p class="font-display text-4xl font-bold tracking-tight">5.7K</p>
+            <p class="logo text-4xl">8K 30p</p>
             <p data-i18n="g2" class="mt-2 text-sm text-neutral-400">target panorama resolution</p>
           </div>
           <div class="reveal glass glass-dark rounded-[24px] p-6" style="transition-delay:160ms">
-            <p class="font-display text-4xl font-bold tracking-tight">1 PCB</p>
+            <p class="logo text-4xl">1 PCB</p>
             <p data-i18n="g3" class="mt-2 text-sm text-neutral-400">all the electronics on one board</p>
           </div>
           <div class="reveal glass glass-dark rounded-[24px] p-6" style="transition-delay:240ms">
-            <p data-i18n="g4.v" class="font-display text-4xl font-bold tracking-tight">$0</p>
+            <p data-i18n="g4.v" class="logo text-4xl">$0</p>
             <p data-i18n="g4" class="mt-2 text-sm text-neutral-400">on off-the-shelf camera modules. All my own</p>
           </div>
         </div>

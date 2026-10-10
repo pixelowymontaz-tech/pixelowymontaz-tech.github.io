@@ -115,7 +115,13 @@ const SOCIAL = {
       const limit = parseInt(c.dataset.limit || "0", 10);
       const list = limit > 0 ? posts.slice(0, limit) : posts;
       c.replaceChildren(...list.map((p, i) => renderPost(p, i, limit > 0)));
-      if (!list.length) c.appendChild(el("p", "py-9 text-neutral-500", I18N.t("posts.empty")));
+      if (!list.length) {
+        const box = el("div", "posts-empty reveal");
+        box.appendChild(el("p", "font-display text-2xl font-semibold tracking-tight", I18N.t("posts.empty")));
+        box.appendChild(el("p", "mt-2 text-sm text-neutral-500", I18N.t("posts.emptySub")));
+        c.classList.remove("border-b");
+        c.appendChild(box);
+      }
       observe(c);
     });
     document.querySelectorAll("[data-post-count]").forEach((n) => (n.textContent = posts.length));
