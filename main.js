@@ -109,7 +109,9 @@
       observe(c);
     });
     document.querySelectorAll("[data-post-count]").forEach((n) => (n.textContent = posts.length));
-    document.querySelectorAll("[data-latest]").forEach((n) => (n.textContent = posts[0] ? localized(posts[0]).title : "—"));
+    document.querySelectorAll("[data-latest]").forEach((n) => (n.textContent = posts[0] ? localized(posts[0]).title : ""));
+    // bez wpisów nie pokazujemy pustego „Ostatnio:”
+    document.querySelectorAll("[data-latest-row]").forEach((n) => n.classList.toggle("hidden", !posts.length));
   }
   if (needsPosts) {
     loadPosts()

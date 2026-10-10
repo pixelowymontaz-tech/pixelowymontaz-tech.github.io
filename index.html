@@ -58,9 +58,9 @@
 
         <div class="reveal glass mt-8 max-w-md rounded-[28px] p-6 sm:p-7" style="transition-delay:120ms">
           <p data-i18n="hero.lead" class="text-lg leading-relaxed text-neutral-800">
-            A 360° camera I'm building myself, from scratch. Electronics and PCB now, software later.
+            A 360° camera I'm building myself, from scratch. Planning for now, then the PCB and software.
           </p>
-          <p class="mt-5 flex items-start gap-2 border-t border-black/10 pt-4 text-sm text-neutral-600">
+          <p data-latest-row class="mt-5 flex items-start gap-2 border-t border-black/10 pt-4 text-sm text-neutral-600">
             <span class="mt-1.5 inline-block h-2 w-2 shrink-0 animate-pulse rounded-full bg-black"></span>
             <span><span data-i18n="hero.latest">Latest:</span> <span data-latest class="font-medium text-black">…</span></span>
           </p>
@@ -103,20 +103,20 @@
         <p data-i18n="stages.lead" class="reveal mt-5 max-w-lg text-neutral-600">Build stages, roughly in order. The dots show what's already behind me.</p>
 
         <ol class="mt-14 grid md:grid-cols-5">
-          <li class="reveal relative border-l border-black pb-10 pl-8 md:border-l-0 md:border-t md:pb-0 md:pl-0 md:pr-6 md:pt-8">
-            <span class="absolute -left-[7px] top-0 h-3.5 w-3.5 rounded-full bg-black md:-top-[7px] md:left-0"></span>
-            <p data-i18n="st.done" class="text-xs font-medium uppercase tracking-wider text-neutral-500">done</p>
-            <h3 data-i18n="s1.t" class="mt-2 font-display text-xl font-semibold tracking-tight">Parts &amp; schematic</h3>
-            <p data-i18n="s1.d" class="mt-2 text-sm leading-relaxed text-neutral-600">Sensors, lenses, power. What connects to what.</p>
-          </li>
-          <li class="reveal relative border-l border-black/15 pb-10 pl-8 md:border-l-0 md:border-t md:pb-0 md:pl-0 md:pr-6 md:pt-8" style="transition-delay:80ms">
+          <li class="reveal relative border-l border-black/15 pb-10 pl-8 md:border-l-0 md:border-t md:pb-0 md:pl-0 md:pr-6 md:pt-8">
             <span class="absolute -left-[7px] top-0 grid h-3.5 w-3.5 place-items-center md:-top-[7px] md:left-0">
               <span class="absolute h-full w-full animate-ping rounded-full bg-black/30"></span>
               <span class="relative h-3.5 w-3.5 rounded-full border-[3px] border-black bg-white"></span>
             </span>
             <p data-i18n="st.now" class="text-xs font-medium uppercase tracking-wider text-black">now</p>
-            <h3 data-i18n="s2.t" class="mt-2 font-display text-xl font-semibold tracking-tight">PCB</h3>
-            <p data-i18n="s2.d" class="mt-2 text-sm leading-relaxed text-neutral-600">Layout, ordering, soldering the first version.</p>
+            <h3 data-i18n="s1.t" class="mt-2 font-display text-xl font-semibold tracking-tight">Planning</h3>
+            <p data-i18n="s1.d" class="mt-2 text-sm leading-relaxed text-neutral-600">Picking parts, the schematic, a plan for the whole thing.</p>
+          </li>
+          <li class="reveal relative border-l border-black/15 pb-10 pl-8 md:border-l-0 md:border-t md:pb-0 md:pl-0 md:pr-6 md:pt-8" style="transition-delay:80ms">
+            <span class="absolute -left-[7px] top-0 h-3.5 w-3.5 rounded-full border border-black/30 bg-[#f4f4f3] md:-top-[7px] md:left-0"></span>
+            <p data-i18n="st.later" class="text-xs font-medium uppercase tracking-wider text-neutral-400">later</p>
+            <h3 data-i18n="s2.t" class="mt-2 font-display text-xl font-semibold tracking-tight text-neutral-500">PCB</h3>
+            <p data-i18n="s2.d" class="mt-2 text-sm leading-relaxed text-neutral-500">Layout, ordering, soldering the first version.</p>
           </li>
           <li class="reveal relative border-l border-black/15 pb-10 pl-8 md:border-l-0 md:border-t md:pb-0 md:pl-0 md:pr-6 md:pt-8" style="transition-delay:160ms">
             <span class="absolute -left-[7px] top-0 h-3.5 w-3.5 rounded-full border border-black/30 bg-[#f4f4f3] md:-top-[7px] md:left-0"></span>
@@ -188,7 +188,7 @@
       <p data-i18n="contact.lead" class="text-neutral-400">Got a question, an idea, or a sensor you don't need?</p>
       <!-- ZMIEŃ: e-mail. Część przed @ w data-u, po @ w data-d.
            Adres składa skrypt, więc boty zbierające maile go nie widzą w kodzie. -->
-      <a data-mail data-u="movo.kontakt" data-d="example.com" href="#contact" class="mt-3 block break-all font-display text-3xl font-bold tracking-tight transition hover:text-neutral-400 sm:text-5xl">e-mail</a>
+      <a data-mail data-u="movo.contact" data-d="gmail.com" href="#contact" class="mt-3 block break-all font-display text-3xl font-bold tracking-tight transition hover:text-neutral-400 sm:text-5xl">e-mail</a>
 
       <!-- ZMIEŃ: linki do kont (usuń te, których nie masz) -->
       <ul class="mt-10 flex flex-wrap gap-2 text-sm">
