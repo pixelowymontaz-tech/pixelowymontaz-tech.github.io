@@ -141,10 +141,19 @@ body {
   to { transform: rotate(360deg); }
 }
 
+/* Logo MOVO — Poppins ExtraBold z rozsuniętymi literami, jak w oryginalnym logo */
+.logo {
+  font-family: "Poppins", "Inter", system-ui, sans-serif;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
 .wordmark {
-  font-size: clamp(5.5rem, 27vw, 20rem);
+  font-family: "Poppins", "Inter", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(4.5rem, 24vw, 17rem);
   line-height: 0.8;
-  letter-spacing: -0.07em;
+  letter-spacing: 0.04em;
   /* odwraca kolor tam, gdzie napis wchodzi na czarną soczewkę */
   color: #fff;
   mix-blend-mode: difference;
