@@ -35,9 +35,9 @@
     <nav class="glass glass-nav mx-auto flex max-w-2xl items-center justify-between rounded-full py-2 pl-5 pr-2 text-sm">
       <a href="index.html" class="logo text-base">MOVO</a>
       <div class="flex items-center gap-1">
-        <a href="#about" data-i18n="nav.about" class="hidden rounded-full px-3 py-1.5 text-neutral-600 transition hover:bg-white/60 hover:text-black sm:block">About</a>
-        <a href="#stages" data-i18n="nav.stages" class="hidden rounded-full px-3 py-1.5 text-neutral-600 transition hover:bg-white/60 hover:text-black sm:block">Stages</a>
-        <a href="#updates" data-i18n="nav.updates" class="rounded-full px-3 py-1.5 text-neutral-600 transition hover:bg-white/60 hover:text-black">Updates</a>
+        <a href="#about" data-i18n="nav.about" class="nav-link hidden rounded-full px-3 py-1.5 text-neutral-600 transition hover:bg-white/60 hover:text-black sm:block">About</a>
+        <a href="#stages" data-i18n="nav.stages" class="nav-link hidden rounded-full px-3 py-1.5 text-neutral-600 transition hover:bg-white/60 hover:text-black sm:block">Stages</a>
+        <a href="#updates" data-i18n="nav.updates" class="nav-link rounded-full px-3 py-1.5 text-neutral-600 transition hover:bg-white/60 hover:text-black">Updates</a>
         <button type="button" data-lang-toggle class="rounded-full px-2.5 py-1.5 font-medium text-neutral-600 transition hover:bg-white/60 hover:text-black">PL</button>
         <a href="#contact" data-i18n="nav.contact" class="rounded-full bg-black px-4 py-1.5 text-white transition hover:bg-neutral-800">Contact</a>
       </div>
@@ -69,7 +69,7 @@
     </section>
 
     <!-- PASEK — przewijający się tekst -->
-    <div class="ticker" aria-hidden="true">
+    <div data-dark class="ticker" aria-hidden="true">
       <div class="ticker-track">
         <span>360°</span><i></i><span>8K 30p</span><i></i><span>2× FISHEYE</span><i></i><span>PCB</span><i></i><span>DIY</span><i></i><span>MOVO</span><i></i>
         <span>360°</span><i></i><span>8K 30p</span><i></i><span>2× FISHEYE</span><i></i><span>PCB</span><i></i><span>DIY</span><i></i><span>MOVO</span><i></i>
@@ -178,7 +178,7 @@
     </section>
 
     <!-- CEL -->
-    <section class="relative overflow-hidden bg-black text-white">
+    <section data-dark class="relative overflow-hidden bg-black text-white">
       <div class="dots-dark pointer-events-none absolute inset-0" aria-hidden="true"></div>
 
       <div class="relative mx-auto max-w-6xl px-4 py-24 sm:px-6 md:py-36 lg:px-8">
@@ -186,19 +186,19 @@
         <p data-i18n="goals.lead" class="reveal mt-5 max-w-lg text-neutral-400">Not promises, just goals. We'll see how much of this survives contact with reality.</p>
 
         <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          <div class="reveal glass glass-dark rounded-[24px] p-6">
+          <div class="reveal lift glass glass-dark rounded-[24px] p-6">
             <p class="logo text-4xl">2×</p>
             <p data-i18n="g1" class="mt-2 text-sm text-neutral-400">fisheye lenses, ~200° each</p>
           </div>
-          <div class="reveal glass glass-dark rounded-[24px] p-6" style="transition-delay:80ms">
+          <div class="reveal lift glass glass-dark rounded-[24px] p-6" style="transition-delay:80ms">
             <p class="logo text-4xl">8K 30p</p>
             <p data-i18n="g2" class="mt-2 text-sm text-neutral-400">target panorama resolution</p>
           </div>
-          <div class="reveal glass glass-dark rounded-[24px] p-6" style="transition-delay:160ms">
+          <div class="reveal lift glass glass-dark rounded-[24px] p-6" style="transition-delay:160ms">
             <p class="logo text-4xl">1 PCB</p>
             <p data-i18n="g3" class="mt-2 text-sm text-neutral-400">all the electronics on one board</p>
           </div>
-          <div class="reveal glass glass-dark rounded-[24px] p-6" style="transition-delay:240ms">
+          <div class="reveal lift glass glass-dark rounded-[24px] p-6" style="transition-delay:240ms">
             <p data-i18n="g4.v" class="logo text-4xl">$0</p>
             <p data-i18n="g4" class="mt-2 text-sm text-neutral-400">on off-the-shelf camera modules. All my own</p>
           </div>
@@ -208,12 +208,13 @@
   </main>
 
   <!-- KONTAKT -->
-  <footer id="contact" class="bg-black px-4 pb-6 text-white sm:px-6 lg:px-8">
+  <footer id="contact" data-dark class="overflow-hidden bg-black px-4 pt-6 text-white sm:px-6 lg:px-8">
     <div class="glass glass-dark mx-auto max-w-6xl rounded-[32px] p-7 sm:p-12">
       <p data-i18n="contact.lead" class="text-neutral-400">Got a question, an idea, or a sensor you don't need?</p>
       <!-- ZMIEŃ: e-mail. Część przed @ w data-u, po @ w data-d.
            Adres składa skrypt, więc boty zbierające maile go nie widzą w kodzie. -->
-      <a data-mail data-u="movo.contact" data-d="gmail.com" href="#contact" class="mt-3 block break-all font-display text-3xl font-bold tracking-tight transition hover:text-neutral-400 sm:text-5xl">e-mail</a>
+      <a data-mail data-u="movo.contact" data-d="gmail.com" href="#contact" class="mt-3 inline-block break-all font-display text-3xl font-bold tracking-tight transition hover:text-neutral-400 sm:text-5xl">e-mail</a>
+      <div class="mt-4"><button type="button" data-copy-mail data-i18n="contact.copy" class="rounded-full border border-white/15 px-4 py-2 text-sm transition hover:bg-white hover:text-black">Copy</button></div>
 
       <!-- Linki do kont wpisuje się w main.js (SOCIAL). Pusty link = przycisk ukryty. -->
       <ul data-social-list class="mt-10 hidden flex-wrap gap-2 text-sm">
@@ -226,6 +227,7 @@
       <span>© <span data-year></span> Ignacy · <span class="logo">MOVO</span></span>
       <a href="#" data-i18n="footer.top" class="hover:text-white">back to top</a>
     </div>
+    <div class="footer-mark" aria-hidden="true">MOVO</div>
   </footer>
 
   <script src="lens.js"></script>

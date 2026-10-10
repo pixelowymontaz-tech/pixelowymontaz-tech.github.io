@@ -351,3 +351,92 @@ body {
   .ticker-track, .scroll-cue span, .stage[data-stage="now"] .stage-mark { animation: none; }
   .id-card, .id-card:hover { transform: none; }
 }
+
+/* ---------- Menu: podświetlenie aktualnej sekcji ---------- */
+.nav-link.is-active {
+  color: #0b0b0c;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+/* ---------- Pasek: zanikające brzegi, pauza po najechaniu ---------- */
+.ticker {
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.ticker:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+/* ---------- Karty unoszą się po najechaniu ---------- */
+.stage,
+.lift {
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.45s ease;
+}
+.stage.is-visible:hover,
+.lift.is-visible:hover {
+  transform: translateY(-6px);
+}
+.stage[data-stage="later"].is-visible:hover {
+  box-shadow: 0 20px 40px -24px rgba(0, 0, 0, 0.25);
+}
+
+/* ---------- Wielki napis MOVO na dole ---------- */
+.footer-mark {
+  margin: 48px auto -0.14em;
+  font-family: "Poppins", "Inter", system-ui, sans-serif;
+  font-weight: 800;
+  font-size: 25vw;
+  line-height: 0.8;
+  letter-spacing: 0.04em;
+  padding-left: 0.04em;
+  text-align: center;
+  white-space: nowrap;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.22);
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ---------- Kropki na jasnym tle (blog) ---------- */
+.dots-light {
+  background-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.16) 1.1px, transparent 1.7px);
+  background-size: 28px 28px;
+  -webkit-mask-image: linear-gradient(#000 30%, transparent);
+  mask-image: linear-gradient(#000 30%, transparent);
+}
+
+/* ---------- Menu nad czarnym tłem: ciemne szkło ---------- */
+.glass-nav {
+  transition: background 0.35s ease, border-color 0.35s ease, color 0.35s ease;
+}
+.glass-nav.on-dark {
+  background: linear-gradient(135deg, rgba(30, 30, 30, 0.78), rgba(15, 15, 15, 0.62));
+  border-color: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+.glass-nav.on-dark::before {
+  background: radial-gradient(240px circle at var(--mx) var(--my), rgba(255, 255, 255, 0.1), transparent 60%);
+}
+.glass-nav.on-dark::after {
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.35), rgba(255, 255, 255, 0) 45%, rgba(255, 255, 255, 0) 70%, rgba(255, 255, 255, 0.12));
+}
+.glass-nav.on-dark a,
+.glass-nav.on-dark button {
+  color: rgba(255, 255, 255, 0.72);
+}
+.glass-nav.on-dark a:hover,
+.glass-nav.on-dark button:hover,
+.glass-nav.on-dark .logo {
+  color: #fff;
+  background-color: transparent;
+}
+.glass-nav.on-dark .nav-link.is-active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.14);
+  box-shadow: none;
+}
+.glass-nav.on-dark a[href="#contact"] {
+  background: #fff;
+  color: #0b0b0c;
+}

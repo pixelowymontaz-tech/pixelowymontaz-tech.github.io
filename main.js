@@ -93,8 +93,11 @@ const SOCIAL = {
           (entries) =>
             entries.forEach((e) => {
               if (e.isIntersecting) {
-                e.target.classList.add("is-visible");
-                io.unobserve(e.target);
+                const t = e.target;
+                t.classList.add("is-visible");
+                io.unobserve(t);
+                // po wejściu kasujemy opóźnienie, żeby efekty po najechaniu działały od razu
+                if (t.style.transitionDelay) setTimeout(() => (t.style.transitionDelay = ""), 1300);
               }
             }),
           { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }
@@ -210,6 +213,53 @@ const SOCIAL = {
     a.href = "mailto:" + addr;
     a.textContent = addr;
   });
+
+  // ---------- Przycisk „Kopiuj” przy e-mailu ----------
+  document.querySelectorAll("[data-copy-mail]").forEach((btn) => {
+    const mail = document.querySelector("[data-mail]");
+    if (!mail || !navigator.clipboard) { btn.remove(); return; }
+    btn.addEventListener("click", () => {
+      const addr = mail.dataset.u + "@" + mail.dataset.d;
+      navigator.clipboard.writeText(addr).then(() => {
+        btn.textContent = I18N.t("contact.copied");
+        setTimeout(() => (btn.textContent = I18N.t("contact.copy")), 1800);
+      }).catch(() => {});
+    });
+  });
+
+  // ---------- Menu robi się ciemne nad czarnymi sekcjami ----------
+  const navBar = document.querySelector(".glass-nav");
+  const darks = document.querySelectorAll("[data-dark]");
+  if (navBar && darks.length && "IntersectionObserver" in window) {
+    const under = new Set();
+    const dark = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => (e.isIntersecting ? under.add(e.target) : under.delete(e.target)));
+        navBar.classList.toggle("on-dark", under.size > 0);
+      },
+      // pasek wysokości menu na górze ekranu
+      { rootMargin: "-30px 0px -" + Math.max(window.innerHeight - 70, 0) + "px 0px" }
+    );
+    darks.forEach((d) => dark.observe(d));
+  }
+
+  // ---------- Menu podświetla sekcję, którą właśnie oglądasz ----------
+  const navLinks = document.querySelectorAll(".nav-link[href^='#']");
+  if (navLinks.length && "IntersectionObserver" in window) {
+    const byId = {};
+    navLinks.forEach((a) => (byId[a.getAttribute("href").slice(1)] = a));
+    const spy = new IntersectionObserver(
+      (entries) =>
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          navLinks.forEach((a) => a.classList.remove("is-active"));
+          const a = byId[e.target.id];
+          if (a) a.classList.add("is-active");
+        }),
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+    document.querySelectorAll("main section[id], footer[id]").forEach((s) => spy.observe(s));
+  }
 
   document.querySelectorAll("[data-year]").forEach((n) => (n.textContent = new Date().getFullYear()));
 })();
