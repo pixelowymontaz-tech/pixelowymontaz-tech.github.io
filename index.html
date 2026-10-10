@@ -190,11 +190,11 @@
            Adres składa skrypt, więc boty zbierające maile go nie widzą w kodzie. -->
       <a data-mail data-u="movo.contact" data-d="gmail.com" href="#contact" class="mt-3 block break-all font-display text-3xl font-bold tracking-tight transition hover:text-neutral-400 sm:text-5xl">e-mail</a>
 
-      <!-- ZMIEŃ: linki do kont (usuń te, których nie masz) -->
-      <ul class="mt-10 flex flex-wrap gap-2 text-sm">
-        <li><a href="https://github.com/pixelowymontaz-tech" target="_blank" rel="noopener noreferrer" class="block rounded-full border border-white/15 px-4 py-2 transition hover:bg-white hover:text-black">GitHub</a></li>
-        <li><a href="https://youtube.com/" target="_blank" rel="noopener noreferrer" class="block rounded-full border border-white/15 px-4 py-2 transition hover:bg-white hover:text-black">YouTube</a></li>
-        <li><a href="https://instagram.com/" target="_blank" rel="noopener noreferrer" class="block rounded-full border border-white/15 px-4 py-2 transition hover:bg-white hover:text-black">Instagram</a></li>
+      <!-- Linki do kont wpisuje się w main.js (SOCIAL). Pusty link = przycisk ukryty. -->
+      <ul data-social-list class="mt-10 hidden flex-wrap gap-2 text-sm">
+        <li data-social="discord" class="hidden"><a target="_blank" rel="noopener noreferrer" class="block rounded-full border border-white/15 px-4 py-2 transition hover:bg-white hover:text-black">Discord</a></li>
+        <li data-social="youtube" class="hidden"><a target="_blank" rel="noopener noreferrer" class="block rounded-full border border-white/15 px-4 py-2 transition hover:bg-white hover:text-black">YouTube</a></li>
+        <li data-social="tiktok" class="hidden"><a target="_blank" rel="noopener noreferrer" class="block rounded-full border border-white/15 px-4 py-2 transition hover:bg-white hover:text-black">TikTok</a></li>
       </ul>
     </div>
     <div class="mx-auto mt-6 flex max-w-6xl justify-between px-2 text-xs text-neutral-500">

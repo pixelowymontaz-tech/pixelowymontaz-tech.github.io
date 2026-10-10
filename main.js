@@ -1,6 +1,16 @@
 // Wspólny skrypt dla index.html i blog.html.
 // Wpisy są wstawiane wyłącznie przez textContent — nigdy jako HTML.
 
+// ============================================================
+//  KONTA W STOPCE — wklej pełne linki (https://…).
+//  Pusty link = przycisk się nie pokazuje.
+// ============================================================
+const SOCIAL = {
+  discord: "", // np. "https://discord.gg/xxxxxx"
+  youtube: "", // np. "https://www.youtube.com/@movo"
+  tiktok: "",  // np. "https://www.tiktok.com/@movo"
+};
+
 (function () {
   // Ochrona przed clickjackingiem — strona nie działa osadzona w cudzej ramce
   if (window.top !== window.self) {
@@ -163,6 +173,27 @@
     if (img.complete) return img.naturalWidth ? ok() : fail();
     img.addEventListener("load", ok);
     img.addEventListener("error", fail);
+  });
+
+  // ---------- Konta w stopce (tylko https i właściwe domeny) ----------
+  const SOCIAL_HOSTS = {
+    discord: /^(www\.)?(discord\.gg|discord\.com)$/,
+    youtube: /^(www\.|m\.)?(youtube\.com|youtu\.be)$/,
+    tiktok: /^(www\.)?tiktok\.com$/,
+  };
+  let anySocial = false;
+  document.querySelectorAll("[data-social]").forEach((li) => {
+    const kind = li.dataset.social;
+    let url;
+    try { url = new URL(SOCIAL[kind] || ""); } catch (_) { return; }
+    if (url.protocol !== "https:" || !SOCIAL_HOSTS[kind] || !SOCIAL_HOSTS[kind].test(url.hostname)) return;
+    li.querySelector("a").href = url.href;
+    li.classList.remove("hidden");
+    anySocial = true;
+  });
+  document.querySelectorAll("[data-social-list]").forEach((ul) => {
+    ul.classList.toggle("hidden", !anySocial);
+    ul.classList.toggle("flex", anySocial);
   });
 
   // ---------- E-mail składany w przeglądarce (nie ma go w kodzie wprost) ----------
