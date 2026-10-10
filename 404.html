@@ -15,35 +15,16 @@
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body class="font-sans text-neutral-950 antialiased">
-  <main class="relative flex min-h-svh items-center overflow-hidden">
-    <div class="hero-art" aria-hidden="true">
-      <svg class="dial" viewBox="0 0 1000 1000" fill="none" stroke="currentColor" aria-hidden="true">
-          <circle cx="500" cy="500" r="492" stroke-width="1.5" stroke-opacity=".12" />
-          <g class="spin-slow">
-            <circle cx="500" cy="500" r="440" stroke-width="16" pathLength="360" stroke-dasharray="0.18 1.82" stroke-opacity=".5" />
-            <circle cx="500" cy="500" r="432" stroke-width="32" pathLength="360" stroke-dasharray="0.45 29.55" />
-            <text x="500" y="138" text-anchor="middle">0°</text>
-            <text x="866" y="505" text-anchor="middle">90°</text>
-            <text x="500" y="874" text-anchor="middle">180°</text>
-            <text x="134" y="505" text-anchor="middle">270°</text>
-          </g>
-          <circle cx="500" cy="500" r="400" stroke-width="1" stroke-opacity=".15" />
-          <g class="spin-rev">
-            <circle cx="500" cy="500" r="300" stroke-width="1.5" stroke-dasharray="3 12" stroke-opacity=".4" />
-          </g>
-          <circle cx="500" cy="500" r="210" stroke-width="1" stroke-opacity=".12" />
-          <path d="M706.8 536.5L893.9 569.5M293.2 536.5L106.1 569.5" stroke-width="1" stroke-opacity=".35" />
-          <path d="M500 470V530M470 500H530" stroke-width="1.5" stroke-opacity=".6" />
-        </svg>
-    </div>
+  <main data-lens-host class="lens-host relative flex min-h-svh items-center overflow-hidden">
     <div class="relative mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-      <h1 class="wordmark">404</h1>
-      <div class="glass mt-8 max-w-sm rounded-[28px] p-6">
+      <h1 data-lens-text class="wordmark relative z-[1]">404</h1>
+      <div class="glass relative z-[3] mt-8 max-w-sm rounded-[28px] p-6">
         <p data-i18n="404.text" class="text-lg text-neutral-800">Nothing here. The lens is staring into the void.</p>
         <a href="/" data-i18n="404.back" class="mt-5 inline-block rounded-full bg-black px-5 py-2.5 text-sm font-medium text-white transition hover:bg-neutral-800">Back to the homepage</a>
       </div>
     </div>
   </main>
+  <script src="/lens.js"></script>
   <script src="/i18n.js"></script>
 </body>
 </html>
