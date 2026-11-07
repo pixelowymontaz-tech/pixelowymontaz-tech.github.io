@@ -1,1 +1,15 @@
-[]
+[
+  {
+    "id": "rozpoczecie-prac-nad-plytka-pcb-efc98b",
+    "date": "2026-11-07",
+    "title": "Rozpoczęcie prac nad płytką PCB",
+    "text": "Utworzylem kilka akrukszy w KICAD i zacząlem robic schematy",
+    "title_en": "Starting to make a PCB",
+    "text_en": "I created some sheets in KICAD and started making schematics",
+    "tags": [
+      "PCB",
+      "KICAD",
+      "START"
+    ]
+  }
+]
